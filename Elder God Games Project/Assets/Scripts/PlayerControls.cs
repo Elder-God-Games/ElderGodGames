@@ -12,7 +12,6 @@ public class PlayerControls : MonoBehaviour
     public float speed;
     public bool jumpAbility = true;
     public float jumpForce;
-    public int noOfJumps = 2;
     public int noOfJumps;
 
     private float horizontalMove;
