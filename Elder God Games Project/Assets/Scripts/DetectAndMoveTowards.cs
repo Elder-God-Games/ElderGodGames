@@ -3,136 +3,149 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DetectAndMoveTowards : MonoBehaviour {
+    // coliders for detection
+    public CircleCollider2D playerCurcleColider;
+    public BoxCollider2D boxColider;
 
-    public CircleCollider2D player;
-    public CapsuleCollider2D colider;
+    // attack ability trigger
     public bool attackAbility;
-    float distance;
     public float AttackDistance;
-    public float DashDistance;
+    float distance;
+
+    public bool CanDash;
+    public bool CanWalk = true;
+
+    //walk timer var
+    public float timer;
+
     public float speed;
-    public Sprite target;
-    private int count = 1;
+    // a sprite to see the point that the enemy will dash too for debuging
+    // the count to make sure it only creates one target
+    private Rigidbody2D rigidBody;
+    private Vector3 Direction = Vector3.left;
+    SpriteRenderer renderer;
+
+    // state machine
     enum states
     {
         IDLE,
         WALK,
+        WALKTOPLAYER,
         ATTACK,
         DASH
     }
     states currentState;
+    public float dashDelayTime;
+
     // Use this for initialization
     void Start()
     {
         currentState = states.IDLE;
+        rigidBody = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(colider.transform.position, player.transform.position);
-
-        
-
-            switch (currentState)
+        // switch on the state machine
+        switch (currentState)
         {
+            
             case states.IDLE:
-                if (colider.IsTouching(player) && currentState != states.ATTACK)
-                {
-                    currentState = states.WALK;
-                }
+                #region
+                currentState = states.WALK;
+                #endregion
                 break;
             case states.WALK:
+                if (CanWalk)
+                {
+                    Walk();
+                }
+                break;
+            case states.WALKTOPLAYER:
+                WalkTowardsPlayer();
 
-                // gets the enemy to move towards the players x position
-                    transform.position = Vector2.MoveTowards(
-                    transform.position,
-                    new Vector2(player.transform.position.x, transform.position.y),
-                    speed * Time.deltaTime);
-
-                // finds if the player is inside the colider but also within a certain distance of the player
-                if (distance < AttackDistance && colider.IsTouching(player))
-                {
-                    currentState = states.ATTACK;
-                }
-                //only works on one side.
-                else if (distance >= DashDistance && distance > AttackDistance)
-                {
-                    currentState = states.DASH;
-                }
-                else if (!colider.IsTouching(player))
-                {
-                    currentState = states.IDLE;
-                }
                 break;
             case states.ATTACK:
-                //section for turning on and off attacks for testing later.
-                if (attackAbility)
-                {
-                    // creates a new box colider that is a trigger
-                    BoxCollider2D attackCollider = this.gameObject.AddComponent<BoxCollider2D>();
-                    attackCollider.isTrigger = true;
-                    // tests o see if the player is left or right of the enemy
-                    // sets the offset based on this.
-                    if (transform.position.x > player.transform.position.x)
-                    {
-                        attackCollider.offset = new Vector2(-0.16f,0.05f);
-                    }
-                    else if (transform.position.x < player.transform.position.x)
-                    {
-                        attackCollider.offset = new Vector2(0.16f,0.05f);
-                    }
-                    // turn off the attack colider or a memory leak exists.
-                    attackAbility = !attackAbility;
-                }
-                else
-                {
-
-                }
-                // sets the enemy back to walk or idele
-                if (colider.IsTouching(player) && distance > AttackDistance)
-                {
-                    currentState = states.WALK;
-                }
+                Attack();
+                
                 break;
             case states.DASH:
-                // the dash keeps moving
-                // stopPoint is constantly moving
-                //Vector3 stopPoint = transform.position - new Vector3(5, 0, 0);
-                //transform.position = Vector2.MoveTowards(transform.position, stopPoint, (speed * 3) * Time.deltaTime);
-                //Debug.Log(stopPoint);
+                Dash();
                 
-                if (count < 1)
-                {
-                    GameObject go1 = new GameObject("Target1");
-                    GameObject go2 = new GameObject("Target2");
-                    SpriteRenderer renderer1 = go1.AddComponent<SpriteRenderer>();
-                    SpriteRenderer renderer2 = go2.AddComponent<SpriteRenderer>();
-                    renderer1.sprite = target;
-                    renderer2.sprite = target;
-                    // change the negative to increse or decreses distace
-                    go1.transform.position = new Vector3(transform.position.x - 2, 0.5f);
-                    go2.transform.position = new Vector3(transform.position.x + 2, 0.5f);
-                    go1.transform.localScale = new Vector3(0.16f, 0.16f, 0);
-                    go2.transform.localScale = new Vector3(0.16f, 0.16f, 0);
-                    count++;
-                }
-                currentState = states.IDLE;
                 break;
-
             default:
                 break;
         }
 
         
     }
-
-    void DebugDetails()
+    public void Dash()
     {
-        Debug.Log("Player Position = " + player.transform.position);
-        Debug.Log("Player Position = " + colider.transform.position);
-        Debug.Log("Dash Positions = " + (colider.transform.position - new Vector3(5, 0, 0)));
-        Debug.Log("Dash Positions = " + (colider.transform.position + new Vector3(5, 0, 0)));
+        
+    }
+    public void Attack()
+    {
+        // creates a new box colider that is a trigger
+        BoxCollider2D attackCollider = this.gameObject.AddComponent<BoxCollider2D>();
+        attackCollider.isTrigger = true;
+        // tests o see if the player is left or right of the enemy
+        // sets the offset based on this.
+        if (transform.position.x > playerCurcleColider.transform.position.x)
+        {
+            attackCollider.offset = new Vector2(-0.16f, 0.05f);
+        }
+        else if (transform.position.x < playerCurcleColider.transform.position.x)
+        {
+            attackCollider.offset = new Vector2(0.16f, 0.05f);
+        }
+        // turn off the attack colider or a memory leak exists.
+        attackAbility = !attackAbility;
+    }
+    public void WalkTowardsPlayer()
+    {
+        transform.position = Vector2.MoveTowards(
+                    transform.position,
+                    new Vector2(playerCurcleColider.transform.position.x, transform.position.y),
+                    speed * Time.deltaTime);
+    }
+    public void Walk()
+    {
+        if (timer <= 0)
+        {
+            timer = Random.Range(2, 5);
+        }
+        rigidBody.velocity = (new Vector3(Direction.x * speed, rigidBody.velocity.y, 0));
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            CanWalk = false;
+        }
+    }
+    public void WalkTimer(float wait)
+    {
+        
+        
+
+    }
+
+    public void FlipSprite()
+    {
+        //for flipping the player sprite and colider
+        Direction = -Direction;
+        renderer.flipX = !renderer.flipX;
+        boxColider.offset = new Vector2(-boxColider.offset.x, boxColider.offset.y);
+    }
+
+    public void StartMoving()
+    {
+        CanWalk = true;
+    }
+    public void StopMoving()
+    {
+        CanWalk = false;
     }
 }
 
