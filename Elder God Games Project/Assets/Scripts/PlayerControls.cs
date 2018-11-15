@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControls : MonoBehaviour {
 public class PlayerControls : MonoBehaviour
 {
 
     // Properties
+    public bool jumpAbility = true;
+
     public Rigidbody2D body;
     public Collider2D collider;
-    public float speed;
-    public bool jumpAbility = true;
-    public float jumpForce;
-    public int noOfJumps = 2;
-    public int noOfJumps;
 
+    public float speed;
     private float horizontalMove;
-    private int jumps;
+
+    public float jumpForce;
+    public int noOfJumps;
     
+    private int jumps;
 
     enum playerStates
     {
@@ -31,52 +31,28 @@ public class PlayerControls : MonoBehaviour
     playerStates currentState;
 
     // Methods
-    void Start() {
     void Start()
     {
         jumps = 0;
-    }
-    void Update() {
 
-        //Debug.Log(Input.GetAxis("Horizontal"));
-        //Debug.Log(Input.GetAxis("Vertical"));
-        
         // Sets player's default state to idle
         // needs to be set back later
         currentState = playerStates.IDLE;
     }
-    void FixedUpdate() {
     void Update()
     {
 
         Move();
 
-        if (body.IsTouching(collider))
-        {
-            jumps = noOfJumps;
-            jumpAbility = true;
-        }
 
-        if (jumpAbility)
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyUp(KeyCode.Space))
-            if (jumps > 0)
+            if (jumps > 0 )
             {
-                // If the player's total number of jumps is greater than 0
-                // let them jump
                 Jump();
             }
             else
             {
-                if (jumps > 0)
-                {
-                    Jump();
-                }
-                else
-                {
-                    jumpAbility = false;
-                }
                 // Else turn off their ability to jump
                 jumpAbility = false;
             }
@@ -92,6 +68,7 @@ public class PlayerControls : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
         body.velocity = new Vector2(horizontalMove, body.velocity.y);
+
     }
     void Jump()
     {
@@ -102,10 +79,22 @@ public class PlayerControls : MonoBehaviour
         // takes away a jump from player's total jump count
         body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumps--;
+
+    }
+    bool IsBelow()
+    {
+        if (collider.tag == "Platform")
+        {
+            if (collider.transform.position.y < body.transform.position.y)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
         // If the player enters the collision field of the set collider
         if (collider.tag == "Platform")
         {
@@ -119,7 +108,6 @@ public class PlayerControls : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        
         // Does nothing at the minute
         // just testing state switching
         currentState = playerStates.DESCENDING;
