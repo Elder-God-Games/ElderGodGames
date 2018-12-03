@@ -23,6 +23,11 @@ public class PlayerControls : MonoBehaviour {
 
         //Debug.Log(Input.GetAxis("Horizontal"));
         //Debug.Log(Input.GetAxis("Vertical"));
+
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            Initiate.Fade("TitleScreen", Color.black, 2);
+        }
         
     }
     void FixedUpdate() {
