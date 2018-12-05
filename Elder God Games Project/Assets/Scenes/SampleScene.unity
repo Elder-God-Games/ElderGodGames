@@ -1739,6 +1739,7 @@ GameObject:
   - component: {fileID: 762225671}
   - component: {fileID: 762225670}
   - component: {fileID: 762225669}
+  - component: {fileID: 762225674}
   - component: {fileID: 762225668}
   - component: {fileID: 762225667}
   m_Layer: 0
@@ -1893,6 +1894,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762225674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 762225666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b78afc37eeb05149b43bcbff1734512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCircleCollider: {fileID: 0}
+  PlayerColliderToHit: {fileID: 0}
+  Rigidbody2D: {fileID: 0}
+  Millsy: {fileID: 1523030690}
+  CapsuleCollider: {fileID: 0}
+  boxColider: {fileID: 0}
+  attackAbility: 1
+  AttackDistance: 0
+  timer: 0
+  dashDelayTime: 0
 --- !u!1001 &1265670693
 Prefab:
   m_ObjectHideFlags: 0
@@ -2150,13 +2172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5188f2a0cd0e74eba8e054c6efea9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1523030692}
-  colider: {fileID: 1392057615}
-  attackAbility: 1
-  AttackDistance: 4
-  DashDistance: 0
-  speed: 0
-  target: {fileID: 0}
 --- !u!1 &1523030690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1659008543259786, guid: 0f2abffae172bd9479a0c3d3d223ec0c,

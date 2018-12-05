@@ -4,139 +4,205 @@ using UnityEngine;
 
 public class MageAttack : MonoBehaviour
 {
+    #region Neils RayExample
+    //public Transform TransformToTrack;
+    //public bool DrawLine;
+    //public float TrackingDistance = 10;
+    //float Distance = 100;
+    //public bool UseTrackerDistance;
+    //LineRenderer line;
+    //RaycastHit result; 
+    #endregion
 
-    public CircleCollider2D player;
-    public CapsuleCollider2D colider;
-    public bool attackAbility;
-    float distance;
+    private Vector3 directionToTarget;
+
+    public CircleCollider2D playerCircleCollider;
+    public CircleCollider2D PlayerColliderToHit;
+    public Rigidbody2D Rigidbody2D;
+    public GameObject PlayableCharacter;
+
+    private Transform pTransform;
+
+    public CapsuleCollider2D CapsuleCollider;
+    public BoxCollider2D boxColider;
+
+
+    //Vector3 player = PlayerColliderToHit.transform.position;
+
+
+
+    public bool attackAbility = true;
     public float AttackDistance;
-    public float DashDistance;
-    public float speed;
-    public Sprite target;
-    private int count = 1;
+
+    float distance = 5;
+    public RaycastHit2D enemySightLine;
+
+    public float timer;
+
+    private Rigidbody2D rigidBody;
+    private Vector3 Direction = Vector3.left;
+    SpriteRenderer spriteRenderer;
+
+
+
+
+    // state machine
     enum states
     {
         IDLE,
-        WALK,
-        ATTACK,
-        DASH
+        WAIT,
+        ATTACK
     }
     states currentState;
-    // Use this for initialization
+    public float dashDelayTime;
+
     void Start()
     {
         currentState = states.IDLE;
+        rigidBody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        pTransform.position = PlayerColliderToHit.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(colider.transform.position, player.transform.position);
 
+        directionToTarget = PlayableCharacter.transform.position - this.transform.position;
 
         switch (currentState)
         {
-            #region Idle
+
             case states.IDLE:
-                if (colider.IsTouching(player) && currentState != states.ATTACK)
-                {
-                    currentState = states.ATTACK;
-                }
-                break;
-            #endregion
-            #region Walk
-            case states.WALK:
+                #region set state to ATTACK
+                currentState = states.ATTACK;
+                #endregion
 
-                // gets the enemy to move towards the players x position
-                transform.position = Vector2.MoveTowards(
-                transform.position,
-                new Vector2(player.transform.position.x, transform.position.y),
-                speed * Time.deltaTime);
-
-                // finds if the player is inside the colider but also within a certain distance of the player
-                if (distance < AttackDistance && colider.IsTouching(player))
-                {
-                    currentState = states.ATTACK;
-                }
-                //only works on one side.
-                else if (distance >= DashDistance && distance > AttackDistance)
-                {
-                    currentState = states.DASH;
-                }
-                else if (!colider.IsTouching(player))
-                {
-                    currentState = states.IDLE;
-                }
                 break;
-            #endregion
-            #region Attack
+
+            case states.WAIT:
+
+                break;
+
             case states.ATTACK:
-                //section for turning on and off attacks for testing later.
-                if (attackAbility)
-                {
-                    // creates a new box colider that is a trigger
-                    BoxCollider2D attackCollider = this.gameObject.AddComponent<BoxCollider2D>();
-                    attackCollider.isTrigger = true;
-                    // tests o see if the player is left or right of the enemy
-                    // sets the offset based on this.
-                    if (transform.position.x > player.transform.position.x)
-                    {
-                        attackCollider.offset = new Vector2(player.transform.position.x, player.transform.position.y);
-                    }
-                    else if (transform.position.x < player.transform.position.x)
-                    {
-                        attackCollider.offset = new Vector2(0.16f, 0.05f);
-                    }
-                    // turn off the attack colider or a memory leak exists.
-                    attackAbility = !attackAbility;
-                }
-                else if(!attackAbility)
-                {
+                Attack();
 
-                }
                 break;
-            #endregion
-            #region Dash
-            case states.DASH:
-                // the dash keeps moving
-                // stopPoint is constantly moving
-                //Vector3 stopPoint = transform.position - new Vector3(5, 0, 0);
-                //transform.position = Vector2.MoveTowards(transform.position, stopPoint, (speed * 3) * Time.deltaTime);
-                //Debug.Log(stopPoint);
-
-                if (count < 1)
-                {
-                    GameObject go1 = new GameObject("Target1");
-                    GameObject go2 = new GameObject("Target2");
-                    SpriteRenderer renderer1 = go1.AddComponent<SpriteRenderer>();
-                    SpriteRenderer renderer2 = go2.AddComponent<SpriteRenderer>();
-                    renderer1.sprite = target;
-                    renderer2.sprite = target;
-                    // change the negative to increse or decreses distace
-                    go1.transform.position = new Vector3(transform.position.x - 2, 0.5f);
-                    go2.transform.position = new Vector3(transform.position.x + 2, 0.5f);
-                    go1.transform.localScale = new Vector3(0.16f, 0.16f, 0);
-                    go2.transform.localScale = new Vector3(0.16f, 0.16f, 0);
-                    count++;
-                }
-                currentState = states.IDLE;
-                break;
-
             default:
                 break;
-                #endregion
         }
 
 
     }
-
-    void DebugDetails()
+    public void Attack()
     {
-        Debug.Log("Player Position = " + player.transform.position);
-        Debug.Log("Player Position = " + colider.transform.position);
-        Debug.Log("Dash Positions = " + (colider.transform.position - new Vector3(5, 0, 0)));
-        Debug.Log("Dash Positions = " + (colider.transform.position + new Vector3(5, 0, 0)));
+        #region Notes
+        // creates a new box colider that is a trigger
+        // Sprite fireball = new this.gameObject.AddComponent<BoxCollider2D>();
+        // tests to see if the player is left or right of the enemy
+        // sets the offset based on this. 
+        #endregion
+
+        enemySightLine = Physics2D.Raycast(transform.localPosition, PlayerColliderToHit.transform.position, 3); //Works
+        //Physics2D.Raycast(transform.position, movement.Direction, SightDistance); //Neils
+
+        #region Debugging Raycast (incorrect raycast)
+        //if (Physics.Raycast(transform.localPosition, transform.localPosition)) //Works
+        //{
+        //    Debug.Log(PlayerColliderToHit.transform.position);
+        //    Debug.DrawRay(transform.position, PlayerColliderToHit.transform.localPosition, Color.red, 3);
+        //} 
+        #endregion
+
+
+
+        if (enemySightLine.collider != null)
+        {
+            Debug.Log(PlayerColliderToHit.transform.position);
+            Debug.DrawRay(transform.position, directionToTarget, Color.red);
+        }
+
+        #region OldRayCast Example
+        //if (Vector3.Distance(transform.position, PlayerColliderToHit.transform.position) < distance)
+        //{
+        //    if (Physics.Raycast(transform.position, (PlayerColliderToHit.transform.position - transform.position)))
+        //    {
+        //        if (enemySightLine.transform == PlayerColliderToHit.transform)
+        //        {
+        //            // In Range and i can see you!
+        //            Debug.DrawRay(transform.position, PlayerColliderToHit.transform.position, Color.red);
+        //        }
+        //    }
+        //} 
+        #endregion
+
+        #region Debug Boxcollider on side of mage
+        //if (CapsuleCollider.IsTouching(PlayerColliderToHit))
+        //{
+        //    if (transform.position.x > playerCircleCollider.transform.position.x)
+        //    {
+        //        BoxCollider2D attackCollider = this.gameObject.AddComponent<BoxCollider2D>();
+        //        attackCollider.isTrigger = true;
+        //        attackCollider.offset = new Vector2(-0.16f, 0.05f);
+        //    }
+        //    else if (transform.position.x < playerCircleCollider.transform.position.x)
+        //    {
+        //        BoxCollider2D attackCollider = this.gameObject.AddComponent<BoxCollider2D>();
+        //        attackCollider.isTrigger = true;
+        //        attackCollider.offset = new Vector2(0.16f, 0.05f);
+        //    }
+        //}
+        // turn off the attack colider or a memory leak exists.
+        //attackAbility = !attackAbility;
+        //currentState = states.WAIT; 
+        #endregion
+
+        #region Neils 3D Ray
+        //transform.LookAt(TransformToTrack);
+
+        //if (UseTrackerDistance && Vector3.Distance(transform.position, TransformToTrack.position) <= TrackingDistance)
+        //{
+        //    #region DrawLine
+        //    if (DrawLine)
+        //    {
+        //        if (Physics.Raycast(transform.position, transform.forward, out result, Distance))
+        //        {
+        //            if (result.collider.tag != "Player")
+        //            {
+        //                line.SetPosition(1, result.point);
+        //                line.enabled = false;
+        //            }
+        //            else
+        //            {
+        //                line.SetPosition(1, TransformToTrack.position);
+        //                line.enabled = true;
+        //            }
+        //        }
+        //        line.SetPosition(0, transform.position);
+        //        line.SetPosition(1, TransformToTrack.position);
+        //    }
+        //    #endregion
+        //}
+        #endregion
+    }
+
+    public void FlipSprite()
+    {
+        //for flipping the player sprite and colider
+        Direction = -Direction;
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+        boxColider.offset = new Vector2(-boxColider.offset.x, boxColider.offset.y);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, PlayableCharacter.transform.position);
     }
 }
-
-
+#region ToDo
+/*
+Use a Ray as a sight of line check
+BoxCollider for range check
+spawn (Instantiate()) a cube above mage
+throw at player
+*/
+#endregion
