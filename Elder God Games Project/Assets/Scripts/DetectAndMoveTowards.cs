@@ -6,6 +6,7 @@ public class DetectAndMoveTowards : MonoBehaviour {
     // coliders for detection
     public CircleCollider2D playerCurcleColider;
     public BoxCollider2D boxColider;
+    public GameObject questionMark;
 
     // attack ability trigger
     public bool attackAbility;
@@ -24,6 +25,7 @@ public class DetectAndMoveTowards : MonoBehaviour {
     private Rigidbody2D rigidBody;
     private Vector3 Direction = Vector3.left;
     SpriteRenderer renderer;
+    bool lostPlayer;
 
     // state machine
     enum states
@@ -41,9 +43,10 @@ public class DetectAndMoveTowards : MonoBehaviour {
     void Start()
     {
         currentState = states.IDLE;
+        boxColider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
-
+        questionMark.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,10 +58,25 @@ public class DetectAndMoveTowards : MonoBehaviour {
             
             case states.IDLE:
                 #region
+                //add proper idle timer.
+
                 currentState = states.WALK;
+                timer = Random.Range(3, 4);
+                
                 #endregion
                 break;
             case states.WALK:
+
+                if (!CanWalk)
+                {
+                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        StartMoving();
+                        questionMark.SetActive(false);
+                    }
+                }
+
                 if (CanWalk)
                 {
                     Walk();
@@ -106,10 +124,44 @@ public class DetectAndMoveTowards : MonoBehaviour {
     }
     public void WalkTowardsPlayer()
     {
-        transform.position = Vector2.MoveTowards(
-                    transform.position,
-                    new Vector2(playerCurcleColider.transform.position.x, transform.position.y),
-                    speed * Time.deltaTime);
+        if (boxColider.IsTouching(playerCurcleColider))
+        {
+            int choice = 0;
+            lostPlayer = false;
+            transform.position = Vector2.MoveTowards(
+                   transform.position,
+                   new Vector2(playerCurcleColider.transform.position.x, transform.position.y),
+                   speed * Time.deltaTime);
+
+            // create a choice for dashing
+
+            // decide to dash.
+            choice = Random.Range(1, 2);
+            if (choice == 2)
+            {
+                currentState = states.DASH;
+            }
+        }
+        else if (!boxColider.IsTouching(playerCurcleColider) && lostPlayer == true)
+        {
+            LookAround();
+        }
+        else
+        {
+            lostPlayer = true;
+        }
+    }
+
+    void LookAround()
+    {
+        StopMoving();
+        questionMark.SetActive(true);
+
+        Invoke("FlipSprite", 1f);
+        Invoke("FlipSprite", .1f);
+        Invoke("FlipSprite", 2.5f);
+        Invoke("FlipSprite", 2f);
+        currentState = states.IDLE;
     }
     public void Walk()
     {
@@ -119,16 +171,32 @@ public class DetectAndMoveTowards : MonoBehaviour {
         }
         rigidBody.velocity = (new Vector3(Direction.x * speed, rigidBody.velocity.y, 0));
         timer -= Time.deltaTime;
+
+        // add in a wall detection.
+            //bounce off the wall just by flipping the sprite
+
         if (timer <= 0)
         {
-            CanWalk = false;
+            StopMoving();
+            NextWalk();
+        }
+
+        if (boxColider.IsTouching(playerCurcleColider))
+        {
+            currentState = states.WALKTOPLAYER;
         }
     }
-    public void WalkTimer(float wait)
-    {
-        
-        
 
+    public void NextWalk()
+    {
+        int i = Random.Range(1, 10);
+
+        if (i % 2 == 0)
+        {
+            FlipSprite();
+            
+        }
+        StartMoving();
     }
 
     public void FlipSprite()
