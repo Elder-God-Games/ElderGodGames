@@ -26,7 +26,7 @@ public class MageAttack : MonoBehaviour
     public CapsuleCollider2D CapsuleCollider;
     public BoxCollider2D boxColider;
 
-
+    bool canAttack = false;
     //Vector3 player = PlayerColliderToHit.transform.position;
 
 
@@ -45,7 +45,6 @@ public class MageAttack : MonoBehaviour
 
 
 
-
     // state machine
     enum states
     {
@@ -61,7 +60,8 @@ public class MageAttack : MonoBehaviour
         currentState = states.IDLE;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        pTransform.position = PlayerColliderToHit.transform.position;
+        //pTransform.position = PlayerColliderToHit.transform.position;
+
     }
 
     void Update()
@@ -117,9 +117,14 @@ public class MageAttack : MonoBehaviour
 
         if (enemySightLine.collider != null)
         {
-            Debug.Log(PlayerColliderToHit.transform.position);
+            //Debug.Log(PlayerColliderToHit.transform.position);
             Debug.DrawRay(transform.position, directionToTarget, Color.red);
         }
+
+        //if (PlayerColliderToHit isTouching )
+        //{
+
+        //}
 
         #region OldRayCast Example
         //if (Vector3.Distance(transform.position, PlayerColliderToHit.transform.position) < distance)
@@ -191,6 +196,35 @@ public class MageAttack : MonoBehaviour
         Direction = -Direction;
         spriteRenderer.flipX = !spriteRenderer.flipX;
         boxColider.offset = new Vector2(-boxColider.offset.x, boxColider.offset.y);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)//non-stop updating
+    {
+        if (col.tag == "Player")
+        {
+            Debug.Log("Enter" + col.gameObject.name + " : " + gameObject.name);
+            canAttack = true;
+            Debug.Log(canAttack);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)//non-stop updating
+    {
+        if (col.tag == "Player")
+        {
+            Debug.Log("Exit" + col.gameObject.name + " : " + gameObject.name);
+            canAttack = false;
+            Debug.Log(canAttack);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            Debug.Log("Stay" + col.gameObject.name + " : " + gameObject.name);
+        }
+        //Debug.Log(canAttack);
     }
 
     private void OnDrawGizmos()
