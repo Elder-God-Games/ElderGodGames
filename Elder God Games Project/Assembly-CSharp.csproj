@@ -61,12 +61,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PlayerBehavior.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\ColliderMageRange.cs" />
     <Compile Include="Assets\Scripts\DetectAndMoveTowards.cs" />
+    <Compile Include="Assets\Scripts\FireballTargeter.cs" />
     <Compile Include="Assets\Scripts\MageAttack.cs" />
+    <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>D:/Eldritch Game/ElderGodGame/Elder God Games Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Eldritch Game/ElderGodGame/Elder God Games Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -75,9 +79,6 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/Eldritch Game/ElderGodGame/Elder God Games Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/Eldritch Game/ElderGodGame/Elder God Games Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

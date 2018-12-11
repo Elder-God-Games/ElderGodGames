@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ColliderMageRange : MonoBehaviour
 {
+
+    //Only used for debuging not needed, not even working
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter");
