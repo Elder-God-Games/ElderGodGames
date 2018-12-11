@@ -93,7 +93,7 @@ MonoBehaviour:
   speed: 2
   rotateSpeed: 500
   lifeSpan: 3
-  Mage: {fileID: 0}
+  Mage: {fileID: 1822704535501302, guid: bd566dd8122891b4485482aaf274f4ee, type: 2}
   Fireball: {fileID: 1115755844994354}
 --- !u!212 &212076568592179690
 SpriteRenderer:
