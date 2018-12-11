@@ -56,6 +56,15 @@ public class PlayerControls : MonoBehaviour
                 jumpAbility = false;
             }
         }
+        else if(Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            Initiate.Fade("SampleScene", Color.black, 1f);
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Initiate.Fade("TitleScreen", Color.black, 1f);
+        }
+
     }
     void Move()
     {

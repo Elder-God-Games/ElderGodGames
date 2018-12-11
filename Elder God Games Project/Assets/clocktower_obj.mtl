@@ -1,0 +1,66 @@
+#
+# Wavefront material file: u:\demo reel project\turbosquid\current\scenes\clocktower_obj.mtl
+#
+# Converted by the PolyTrans geometry converter from Okino Computer Graphics, Inc.
+# Date/time of export: 09/05/2012 17:35:26
+#
+# Bounding box of geometry = (-9.09104,0,-9.09104) to (9.09104,42.6434,9.09104).
+
+newmtl default
+	Ns 32
+	d 1
+	illum 2
+	Kd 0.4 0.4 0.4
+	Ks 0.7 0.7 0.7
+	Ka 0.3 0.3 0.3
+
+newmtl blueCon
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.996078 0.956863 0.839216
+	Ks 0 0 0
+	Ka 0.298824 0.287059 0.251765
+
+newmtl clock
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.900416 0.900416 0.900416
+	Ks 0 0 0
+	Ka 0.270125 0.270125 0.270125
+
+newmtl clock_2
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.417003 0.417003 0.417003
+	Ks 0 0 0
+	Ka 0.125101 0.125101 0.125101
+
+newmtl dome
+	Ns 32
+	d 1
+	illum 2
+	Kd 0.39556 0.454139 0.375248
+	Ks 0.19778 0.22707 0.187624
+	Ka 0.19778 0.22707 0.187624
+
+newmtl wall
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.846667 0.813333 0.713333
+	Ks 0.0996078 0.0956863 0.0839216
+	Ka 0.298824 0.287059 0.251765
+	map_bump -bm 0.0416667 rough.jpg
+
+newmtl wall_2
+	Ns 25
+	d 1
+	illum 2
+	Kd 0.603185 0.577495 0.510204
+	Ks 0.0861693 0.0824993 0.0728862
+	Ka 0.258508 0.247498 0.218659
+	map_bump -bm 0.0416667 rough.jpg
+
