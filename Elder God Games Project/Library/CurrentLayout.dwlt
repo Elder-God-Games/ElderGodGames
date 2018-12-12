@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 471}
   m_MaxSize: {x: 14002, y: 14021}
   vertical: 0
-  controlID: 8094
+  controlID: 11671
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 471}
   m_MaxSize: {x: 10000, y: 14021}
   vertical: 1
-  controlID: 8095
+  controlID: 11672
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 8096
+  controlID: 11673
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -288,7 +288,7 @@ MonoBehaviour:
     height: 553
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 1
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_Stats: 0
   m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
@@ -368,9 +368,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f0080000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 728efdff4296fdff7841ffffa84dffffb459ffffd0b5ffffe4fbffff000000007e4800009a480000
+    m_SelectedIDs: ce3bffff
+    m_LastClickedID: -50226
+    m_ExpandedIDs: d23bffffec3bffff9a43ffff965afffff667ffff707dffff7887fffff6b3ffff8ec2ffffc8cbffff46e2ffffe4fbffff0000000068450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -450,14 +450,14 @@ MonoBehaviour:
     height: 553
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 30870.69542238567
+  lastFramingTime: 385.63826621698126
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.75626874, y: 0.6830557, z: 15.46875}
+    m_Target: {x: 5.5594716, y: -0.31161112, z: 0.048828125}
     speed: 2
-    m_Value: {x: -0.75626874, y: 0.6830557, z: 15.46875}
+    m_Value: {x: 5.5594716, y: -0.31161112, z: 0.048828125}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -489,9 +489,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 14.6853895
+    m_Target: 9.098393
     speed: 2
-    m_Value: 14.6853895
+    m_Value: 9.098393
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -565,21 +565,21 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs/UI/Images
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs/UI/Images
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Liam\Documents\GitHub\ElderGodGames\Elder God Games
     Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 37}
-    m_SelectedIDs: a40b0000
-    m_LastClickedID: 2980
-    m_ExpandedIDs: 0000000058090000fe0a0000820b0000e00d00007836000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 1a110000
+    m_LastClickedID: 4378
+    m_ExpandedIDs: 000000009a090000f40b00009c0c0000800d0000ac100000e8100000181100008611000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -607,7 +607,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000058090000fe0a0000820b0000e00d00007836000000ca9a3b
+    m_ExpandedIDs: 000000009a090000f40b00009c0c0000800d0000ac100000e8100000181100008611000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
