@@ -3,6 +3,18 @@ guid: 8326938b667b0cb4c9898f0b15039877
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: eye__eye_texture_jpg
+    2100002: line__eye_texture_jpg
+    2100004: iris__eye_texture_jpg
+    2100006: pupil__eye_texture_jpg
+    2100008: cornea
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: eye
+    7400000: Default Take
+    9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -56,7 +68,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviour
     public bool jumpAbility = true;
 
     public Rigidbody2D body;
+    public Collider2D collider;
 
     public float speed;
     private float horizontalMove;
@@ -33,7 +34,6 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         jumps = noOfJumps;
-
         // Sets player's default state to idle
         // needs to be set back later
         currentState = playerStates.IDLE;
@@ -56,15 +56,6 @@ public class PlayerControls : MonoBehaviour
                 jumpAbility = false;
             }
         }
-        else if(Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            Initiate.Fade("SampleScene", Color.black, 1f);
-        }
-        else if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            Initiate.Fade("TitleScreen", Color.black, 1f);
-        }
-
     }
     void Move()
     {
@@ -89,10 +80,22 @@ public class PlayerControls : MonoBehaviour
         jumps--;
 
     }
+    bool IsBelow()
+    {
+        if (collider.tag == "Platform")
+        {
+            if (collider.transform.position.y < body.transform.position.y)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the player enters the collision field of the set collider
-        if (collision.gameObject.tag == "Platform")
+        if (collider.tag == "Platform")
         {
             // Make their total number of jumps equal to the number
             // of jumps specified in the designer
