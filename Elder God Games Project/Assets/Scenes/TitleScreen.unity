@@ -813,7 +813,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4881608155904574, guid: 3351c227bdb070c489baba195d50f079, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 375
+      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 4881608155904574, guid: 3351c227bdb070c489baba195d50f079, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1668,7 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155faf22bb9bb53409151fed2a2fa237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: SampleScene
+  Scene: ClockTowerLevel
   multiplier: 0.74
 --- !u!114 &2066859220
 MonoBehaviour:
