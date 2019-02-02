@@ -24,8 +24,8 @@ public class TowerEyeController : MonoBehaviour {
         else if(isDetected == true)
             transform.LookAt(player.transform);
 
-        Vector3 raycastDir = target.transform.position - transform.position;
-        Physics.Raycast(transform.position, raycastDir);
+        //Vector3 raycastDir = target.transform.position - transform.position;
+        //Physics.Raycast(transform.position, raycastDir);
     }
 
     
