@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-
     // Properties
     public bool jumpAbility = true;
-
-    public Rigidbody2D body;
-
+    
     public float speed;
     private float horizontalMove;
+    private Rigidbody2D body;
 
     public float jumpForce;
     public int noOfJumps;
-    
     private int jumps;
-    
+
     // Methods
     void Start()
     {
+        this.body = this.gameObject.GetComponent<Rigidbody2D>();
         jumps = noOfJumps;
     }
     void Update()
@@ -31,7 +29,7 @@ public class PlayerControls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump"))
         {
-            if (jumps > 0 )
+            if (jumps > 0)
             {
                 Jump();
             }
@@ -41,11 +39,17 @@ public class PlayerControls : MonoBehaviour
                 jumpAbility = false;
             }
         }
-        else if(Input.GetKeyUp(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Fire();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             Initiate.Fade("TitleScreen", Color.black, 1f);
         }
-            
+
     }
     void Move()
     {
@@ -64,38 +68,23 @@ public class PlayerControls : MonoBehaviour
         jumps--;
 
     }
-    
+    void Fire()
+    {
+        
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the player enters the collision field of the set collider
         if (collision.gameObject.tag == "Platform")
         {
-            if (IsBelow(collision))
-            {
-                // Make their total number of jumps equal to the number
-                // of jumps specified in the designer
-                jumps = noOfJumps;
 
-                // Set their ability to jump to true
-                jumpAbility = true;
+            // Make their total number of jumps equal to the number
+            // of jumps specified in the designer
+            jumps = noOfJumps;
 
-            }
+            // Set their ability to jump to true
+            jumpAbility = true;
+
         }
-    }
-    bool IsBelow(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            if (collision.transform.position.y < body.transform.position.y)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
     }
 }
