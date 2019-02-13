@@ -23,6 +23,7 @@ public class DetectAndMoveTowards : MonoBehaviour {
     //walk timer var
     public float timer1;
     public float timer2 = 2;
+    public float timer3 = 2;
 
     public float speed;
     // a sprite to see the point that the enemy will dash too for debuging
@@ -118,15 +119,15 @@ public class DetectAndMoveTowards : MonoBehaviour {
     public void Dash()
     {
         // cause an ! to be created as a timer before dash.
-        timer2 -= Time.deltaTime;
+        timer3 -= Time.deltaTime;
         exclimationMark.SetActive(true);
-        if (timer2 <= 0)
+        if (timer3 <= 0)
         {
             exclimationMark.SetActive(false);
 
             if (CanDash)
             {
-                rigidBody.AddForce((Direction * dashMutiplyer) + new Vector3(0, .2f, 0), ForceMode2D.Impulse);
+                rigidBody.AddForce((Direction * dashMutiplyer) + new Vector3(0, .5f, 0), ForceMode2D.Impulse);
 
                 timer1 -= Time.deltaTime;
                 if (timer1 <= 0)
@@ -139,6 +140,11 @@ public class DetectAndMoveTowards : MonoBehaviour {
             {
                 LookAround();
                 dashed = false;
+                timer3 = 2;
+                if (!boxColider.IsTouching(playerCurcleColider))
+                {
+                    currentState = states.WALKTOPLAYER;
+                }
             }
         }
         // cause a bounce to happen if colided with player.
@@ -164,9 +170,6 @@ public class DetectAndMoveTowards : MonoBehaviour {
     }
     public void WalkTowardsPlayer()
     {
-        
-        
-
         if (boxColider.IsTouching(playerCurcleColider))
         {
             int choice = 0;
