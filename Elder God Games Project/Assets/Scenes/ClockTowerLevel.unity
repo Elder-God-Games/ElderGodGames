@@ -3364,6 +3364,7 @@ MonoBehaviour:
   Turned: 0
   timer1: 0
   timer2: 2
+  timer3: 2
   speed: 0
   dashMutiplyer: 0
   dashed: 0
@@ -4677,11 +4678,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.69
+      value: 10.34
       objectReference: {fileID: 0}
     - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.39
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5207,7 +5208,7 @@ Prefab:
     - target: {fileID: 114550243916175752, guid: 286e985854edc9c47a298240f5c6b72c,
         type: 2}
       propertyPath: dashMutiplyer
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 114550243916175752, guid: 286e985854edc9c47a298240f5c6b72c,
         type: 2}
