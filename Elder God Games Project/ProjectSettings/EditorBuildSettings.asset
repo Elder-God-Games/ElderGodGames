@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 06d9451e6886ba34d8a849ba9873d0b9
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 4f17f870743f461469707c10987dea1a
+  - enabled: 1
+    path: Assets/Scenes/ClockTowerLevel.unity
+    guid: 42594d5b1d305644a9cecf34e234c23c
   m_configObjects: {}

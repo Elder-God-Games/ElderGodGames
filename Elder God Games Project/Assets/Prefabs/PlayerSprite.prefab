@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4748275279104398}
   - component: {fileID: 212012125840822782}
-  - component: {fileID: 61894158671236506}
   - component: {fileID: 50448266409102884}
-  - component: {fileID: 114667065410282742}
+  - component: {fileID: 58445946702545048}
+  - component: {fileID: 114940839649136214}
+  - component: {fileID: 114006571124543304}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1659008543259786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.28, y: 1.03, z: 0.0067592054}
+  m_LocalPosition: {x: -8.69, y: -1.34, z: 0.0067592054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +56,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -63,8 +64,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61894158671236506
-BoxCollider2D:
+--- !u!58 &58445946702545048
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,19 +77,21 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
-  m_EdgeRadius: 0
---- !u!114 &114667065410282742
+  m_Radius: 0.08
+--- !u!114 &114006571124543304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659008543259786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062459e211d748e449eec68477d13efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1659008543259786}
+--- !u!114 &114940839649136214
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,8 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79aa759dbb706c246ac72a9b7cb3c5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  speed: 5
+  jumpAbility: 1
+  body: {fileID: 50448266409102884}
+  collider: {fileID: 0}
+  speed: 3
+  jumpForce: 3
+  noOfJumps: 2
 --- !u!212 &212012125840822782
 SpriteRenderer:
   m_ObjectHideFlags: 1

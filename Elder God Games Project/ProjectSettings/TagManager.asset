@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platform
+  - Fireball
+  - Dashing Enemy
+  - EnemyTurner
   layers:
   - Default
   - TransparentFX
