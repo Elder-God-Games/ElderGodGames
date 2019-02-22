@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4990231534718196}
   - component: {fileID: 182460480964477886}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: RainWindZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4318612906405378}
   - component: {fileID: 199913972080354598}
   - component: {fileID: 198063619831773222}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: RainExplosionParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4166380484715878}
   - component: {fileID: 199204055985773366}
   - component: {fileID: 198049516629669838}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: RainFallParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796492697880070}
   - component: {fileID: 114864887129143956}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: RainPrefab2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4054264805935516}
   - component: {fileID: 198890285484939622}
   - component: {fileID: 199285829826398696}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: RainMistParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1751273940595146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 188.5, z: 301}
+  m_LocalPosition: {x: -7.55, y: 4.28, z: 5.0142183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4166380484715878}
@@ -175,24 +175,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
-  FollowCamera: 0
-  RainIntensity: 0.59
+  FollowCamera: 1
+  RainIntensity: 0.886
   RainFallParticleSystem: {fileID: 198049516629669838}
   RainExplosionParticleSystem: {fileID: 198063619831773222}
   RainMistParticleSystem: {fileID: 198890285484939622}
-  RainMistThreshold: 0.645
+  RainMistThreshold: 0.815
   WindSound: {fileID: 8300000, guid: f9826f595784348498b57bcf6b2c8b1f, type: 3}
   WindSoundVolumeModifier: 0.5
   WindZone: {fileID: 182460480964477886}
-  WindSpeedRange: {x: 100, y: 150, z: 150}
-  WindChangeInterval: {x: 50, y: 30}
-  EnableWind: 1
+  WindSpeedRange: {x: 1, y: 150, z: 150}
+  WindChangeInterval: {x: 1, y: 30}
+  EnableWind: 0
   RainHeightMultiplier: 0.15
   RainWidthMultiplier: 1
   CollisionMask:
     serializedVersion: 2
     m_Bits: 23
-  CollisionLifeTimeRain: 0.005
+  CollisionLifeTimeRain: 0.027
   RainMistCollisionMultiplier: 0.75
 --- !u!182 &182460480964477886
 WindZone:

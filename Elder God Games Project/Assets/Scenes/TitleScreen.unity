@@ -801,6 +801,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114864887129143956, guid: 71ac6658fee0fb84f9f48ca76479897d,
+        type: 2}
+      propertyPath: CollisionMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71ac6658fee0fb84f9f48ca76479897d, type: 2}
   m_IsPrefabAsset: 0
