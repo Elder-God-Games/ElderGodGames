@@ -6,12 +6,12 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool jumpAbility = true;
 
-    public float speed;
+    private float speed;
     private float horizontalMove;
     private Rigidbody2D body;
 
-    public float jumpForce;
-    public int noOfJumps;
+    private float jumpForce;
+    private int noOfJumps;
     private int jumps;
 
     // Use this for initialization
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
         speed = 3;
         noOfJumps = 2;
         jumps = noOfJumps;
+        jumpForce = 3;
     }
 	
 	// Update is called once per frame

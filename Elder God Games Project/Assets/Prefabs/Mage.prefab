@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 114019809139546760}
   m_Layer: 0
   m_Name: Mage
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,14 +206,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCurcleColider: {fileID: 0}
+  collider: {fileID: 0}
   boxColider: {fileID: 0}
   questionMark: {fileID: 0}
+  exclimationMark: {fileID: 0}
   attackAbility: 1
   AttackDistance: 1
   CanDash: 0
   CanWalk: 1
-  timer: 0
+  Turned: 0
+  timer1: 0
+  timer2: 2
+  timer3: 2
   speed: 0
+  dashMutiplyer: 0
+  dashed: 0
   dashDelayTime: 0
 --- !u!114 &114463542019062838
 MonoBehaviour:
