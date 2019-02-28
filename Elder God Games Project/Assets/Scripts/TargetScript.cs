@@ -23,10 +23,14 @@ public class TargetScript : MonoBehaviour
 
     enum State { Idle, Attack, Searching}
     State EyeState;
-    
-    int EnemyCount = 0;
 
     private float towerEyeYpos;
+    //Raycast Detection
+    RaycastHit hit;
+    Vector3 fwd;
+    float dist;
+
+    bool EnemyTrigger;
 
 
     // Use this for initialization
@@ -36,31 +40,34 @@ public class TargetScript : MonoBehaviour
         max = this.transform.position.x + (travelDistance / 2);
 
         towerEyeYpos = transform.position.y;
+
+        EnemyTrigger = false;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
-    { 
-        if(col.gameObject == Player)
+    {
+        if (col.gameObject == Player)
+        {
+            EnemyTrigger = true;
             EyeState = State.Attack;
+        } 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        EyeState = State.Searching;
+        EyeState = State.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Raycast Detection
-        RaycastHit hit;
 
-        Vector3 fwd = TowerEye.transform.TransformDirection(Vector3.forward); //raycast directing in eye direction
-        float dist = Vector3.Distance(TowerEye.transform.position, Player.transform.position); //distance from eye to player
+        fwd = TowerEye.transform.TransformDirection(Vector3.forward); //raycast directing in eye direction
+        dist = Vector3.Distance(TowerEye.transform.position, Player.transform.position); //distance from eye to player
 
         Debug.DrawRay(TowerEye.transform.position, fwd * dist, Color.green);
 
-        if(Physics.Raycast(TowerEye.transform.position, fwd, out hit, 50))
+        if(Physics.Raycast(TowerEye.transform.position, fwd, out hit, dist))
         {
             //Debug.Log(hit.collider.gameObject.tag);
 
@@ -142,18 +149,23 @@ public class TargetScript : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
         else if(transform.position.y < towerEyeYpos)
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(Player.transform.position.x, towerEyeYpos, Player.transform.position.z), step);
-
-        //while(EnemyCount != 3)
-        //{
-        //    StartCoroutine("waitSpawn");
-        //}
+        
+            if (Physics.Raycast(TowerEye.transform.position, fwd, out hit, dist))
+            {
+                if (hit.transform.tag == "Crate")
+                {
+                    EnemyTrigger = false;
+                }
+                else if(EnemyTrigger == true)
+                {
+                    Spawn();
+                }
+            }
     }
 
-    IEnumerator waitSpawn()
+    void Spawn()
     {
-        yield return new WaitForSeconds(2.0f);
         Instantiate(Enemy, new Vector3(Player.transform.position.x, 5, 0), Quaternion.identity);
-        EnemyCount++;
     }
 
 }

@@ -19,7 +19,7 @@ public class MageAttack : MonoBehaviour
     public CapsuleCollider2D CapsuleCollider;
     public BoxCollider2D boxColider;
 
-    bool canAttack = false;
+    bool canAttack = true;
 
     public bool attackAbility = true;
     public float AttackDistance;
@@ -33,6 +33,9 @@ public class MageAttack : MonoBehaviour
     private Vector3 Direction = Vector3.left;
     SpriteRenderer spriteRenderer;
     FireballTargeter fireball;
+
+    RaycastHit hit;
+    float dist;
 
     // state machine
     enum states
@@ -64,11 +67,11 @@ public class MageAttack : MonoBehaviour
     {
         //Fireball.GetComponent<FireballTargeter>().enabled = true;
         directionToTarget = PlayableCharacter.transform.position - this.transform.position;
-        
+
+        dist = Vector3.Distance(transform.position, PlayableCharacter.transform.position);
 
         switch (currentState)
         {
-
             case states.IDLE:
                 currentState = states.ATTACK;
                 break;
@@ -95,7 +98,20 @@ public class MageAttack : MonoBehaviour
             Debug.DrawRay(transform.position, directionToTarget, Color.red);
         }
 
-        if (canAttack)
+        if(Physics.Raycast(transform.position, directionToTarget, out hit, dist))
+        {
+            if (hit.transform.tag == "Platform")
+            {
+                canAttack = false;
+            }
+            else
+            {
+                canAttack = true;
+            }
+        }
+
+
+        if (canAttack == true)
         {
             Fireball.GetComponent<FireballTargeter>().enabled = true;
             Fireball.SetActive(true);
@@ -129,8 +145,8 @@ public class MageAttack : MonoBehaviour
         if (col.tag == "Player")
         {
             Debug.Log("Enter" + col.gameObject.name + " : " + gameObject.name);
-            canAttack = true;
-            Debug.Log(canAttack);
+            //canAttack = true;
+            currentState = states.ATTACK;
         }
     }
 
@@ -139,7 +155,8 @@ public class MageAttack : MonoBehaviour
         if (col.tag == "Player")
         {
             Debug.Log("Exit" + col.gameObject.name + " : " + gameObject.name);
-            canAttack = false;
+            //canAttack = false;
+            currentState = states.IDLE;
             Debug.Log(canAttack);
         }
     }
