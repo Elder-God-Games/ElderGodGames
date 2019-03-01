@@ -7,25 +7,26 @@ public class MageAttack : MonoBehaviour
 {
     private Vector3 directionToTarget;
 
-    public CircleCollider2D playerCircleCollider;
+    //public CircleCollider2D playerCircleCollider;
     public CircleCollider2D PlayerColliderToHit;
-    public Rigidbody2D Rigidbody2D;
+    //public Rigidbody2D Rigidbody2D;
     public GameObject PlayableCharacter;
     public GameObject Fireball;
-    public GameObject FireballPrefab;
+    public GameObject Mage;
+    //public GameObject FireballPrefab;
 
-    //private Transform pTransform;
+    //public CapsuleCollider2D CapsuleCollider;
+    public BoxCollider2D boxCollider;
+    public BoxCollider box;
 
-    public CapsuleCollider2D CapsuleCollider;
-    public BoxCollider2D boxColider;
-
-    bool canAttack = false;
+    bool canAttack = true;
 
     public bool attackAbility = true;
     public float AttackDistance;
 
-    float distance = 5;
-    public RaycastHit2D enemySightLine;
+    //float distance = 5;
+    public RaycastHit enemySightLine;
+    Vector3 fwd;
 
     public float timer;
 
@@ -33,6 +34,9 @@ public class MageAttack : MonoBehaviour
     private Vector3 Direction = Vector3.left;
     SpriteRenderer spriteRenderer;
     FireballTargeter fireball;
+
+    RaycastHit hit;
+    float dist;
 
     // state machine
     enum states
@@ -42,7 +46,8 @@ public class MageAttack : MonoBehaviour
         ATTACK
     }
     states currentState;
-    public float dashDelayTime;
+
+    //public float dashDelayTime;
 
     void Start()
     {
@@ -64,13 +69,16 @@ public class MageAttack : MonoBehaviour
     {
         //Fireball.GetComponent<FireballTargeter>().enabled = true;
         directionToTarget = PlayableCharacter.transform.position - this.transform.position;
-        
+
+        //fwd = Mage.transform.TransformDirection(Vector3.left);
+        //dist = Vector3.Distance(Mage.transform.position, PlayableCharacter.transform.position);
+
+        Debug.DrawRay(this.transform.position, directionToTarget, Color.red);
 
         switch (currentState)
         {
-
             case states.IDLE:
-                currentState = states.ATTACK;
+                Idle();
                 break;
 
             case states.WAIT:
@@ -86,25 +94,85 @@ public class MageAttack : MonoBehaviour
         }
 
     }
+
     public void Attack()
     {
-        enemySightLine = Physics2D.Raycast(transform.localPosition, PlayerColliderToHit.transform.position, 3);
+        canAttack = true;
+        Physics.Raycast(transform.position, fwd, out enemySightLine, dist);
 
-        if (enemySightLine.collider != null)
+        #region Useless
+        //if (enemySightLine.collider.tag == "Crate")
+        //{
+        //    Debug.DrawRay(transform.position, directionToTarget, Color.green);
+        //    Debug.Log("Hello");
+        //}
+
+        //if (enemySightLine.collider.tag == "Crate")
+        //{
+        //    Debug.DrawRay(transform.position, directionToTarget, Color.green);
+        //    Debug.Log("Hello");
+        //}
+
+        //if (enemySightLine.collider == box)
+        //{
+        //    Debug.DrawRay(transform.position, directionToTarget, Color.green);
+        //    Debug.Log("Hello2");
+        //}
+
+        //if (Physics.Raycast(Mage.transform.position, fwd, out enemySightLine, dist))
+        //{
+        //    if (enemySightLine.transform.tag == "Crate")
+        //    {
+        //        Debug.Log("HI");
+        //        Debug.DrawRay(Mage.transform.position, PlayableCharacter.transform.position, Color.red);
+        //        currentState = states.IDLE;
+        //    }
+        //}
+
+        //if (enemySightLine.collider == box)
+        //{
+        //    Debug.Log("HI");
+        //    Debug.DrawRay(transform.position, directionToTarget, Color.red);
+        //}
+        //Debug.DrawRay(this.transform.position, directionToTarget, Color.red);
+        #endregion
+        if (Physics.Raycast(this.transform.position, directionToTarget, out hit))
         {
-            Debug.DrawRay(transform.position, directionToTarget, Color.red);
+            if (hit.transform.tag == "Crate")
+            {
+                canAttack = false;
+                Debug.Log("Crate");
+            }
+            else if (hit.transform.tag != null)
+            {
+                canAttack = true;
+                Debug.Log("No Crate");
+            }
         }
 
-        if (canAttack)
+        //if (Physics.Raycast(Mage.transform.position, PlayableCharacter.transform.position, out hit, dist))
+        //{
+        //    if (hit.transform.tag == "Platform")
+        //    {
+        //        canAttack = false;
+        //    }
+        //    else
+        //    {
+        //        canAttack = true;
+        //    }
+        //}
+
+        if (canAttack == true)
         {
             Fireball.GetComponent<FireballTargeter>().enabled = true;
             Fireball.SetActive(true);
         }
 
-        //if (!canAttack)
-        //{
-        //    currentState = states.WAIT;
-        //}
+
+        if (enemySightLine.collider != null)
+        {
+            Debug.DrawRay(Mage.transform.position, PlayableCharacter.transform.position, Color.red);
+        }
     }
 
     public void Wait()
@@ -117,11 +185,21 @@ public class MageAttack : MonoBehaviour
         }
     }
 
+    public void Idle()
+    {
+        float WaitTime = 1.5f;
+        WaitTime -= Time.deltaTime;
+        if (WaitTime < 0)
+        {
+            currentState = states.ATTACK;
+        }
+    }
+
     public void FlipSprite()
     {
         Direction = -Direction;
         spriteRenderer.flipX = !spriteRenderer.flipX;
-        boxColider.offset = new Vector2(-boxColider.offset.x, boxColider.offset.y);
+        boxCollider.offset = new Vector2(-boxCollider.offset.x, boxCollider.offset.y);
     }
 
     void OnTriggerEnter2D(Collider2D col)//non-stop updating
@@ -129,8 +207,8 @@ public class MageAttack : MonoBehaviour
         if (col.tag == "Player")
         {
             Debug.Log("Enter" + col.gameObject.name + " : " + gameObject.name);
-            canAttack = true;
-            Debug.Log(canAttack);
+            //canAttack = true;
+            currentState = states.ATTACK;
         }
     }
 
@@ -139,7 +217,8 @@ public class MageAttack : MonoBehaviour
         if (col.tag == "Player")
         {
             Debug.Log("Exit" + col.gameObject.name + " : " + gameObject.name);
-            canAttack = false;
+            //canAttack = false;
+            currentState = states.IDLE;
             Debug.Log(canAttack);
         }
     }
@@ -154,7 +233,7 @@ public class MageAttack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, PlayableCharacter.transform.position);
+        //Gizmos.DrawLine(transform.position, PlayableCharacter.transform.position);
     }
 
 }

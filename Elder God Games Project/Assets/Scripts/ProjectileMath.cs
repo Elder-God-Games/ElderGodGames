@@ -24,7 +24,8 @@ public static class ProjectileMath
 
 	public static Vector2 GetLaunchVelocity(float speed, float angleRadians)
 	{
-		return new Vector2(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians)) * speed;
+        Debug.Log("speed:" + speed + "  __angleRadians:" + angleRadians);
+        return new Vector2(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians)) * speed;
 	}
 	
 	//public static Vector3 GetLaunchVelocity(Vector3 targetDisplacement, float angleRadians, float speed)
@@ -137,8 +138,8 @@ public static class ProjectileMath
 	public static bool ComputeProjectileWithPeakHeight(Vector2 displacement, float peakHeight, float gravity, out Vector2 launchVelocity, out float peakTime, out float targetTime)
 	{
 		launchVelocity = Vector2.zero;
-
-		Assert.IsTrue(peakHeight > displacement.y, "peakHeight must be higher than the target");
+        Debug.Log("Displacement:" + displacement + "  __PeakHeight:" + peakHeight + "__launchVelocity" + launchVelocity);
+		Assert.IsTrue(peakHeight > displacement.y, "peakHeight must be higher than the target");//Value was false
 
 		launchVelocity.y = Mathf.Sqrt(-2.0f * gravity * peakHeight);
 
@@ -183,7 +184,8 @@ public static class ProjectileMath
 
 	public static bool IsUnderParabola(Vector2 targetDisplacement, Vector2 launchVelocity, float gravity)
 	{
-		Assert.IsTrue(launchVelocity.x > 0.0f, "Parabola needs a positive X in the launch velocity");
+        //Debug.Log("launchVelocity:" + launchVelocity + "  __targetDisplacement:" + targetDisplacement);
+        Assert.IsTrue(launchVelocity.x > 0.0f, "Parabola needs a positive X in the launch velocity");//Value is either NaN or 0
 
 		float t = targetDisplacement.x / launchVelocity.x;
 		float yt = (launchVelocity.y * t) + (0.5f * gravity * t*t);
