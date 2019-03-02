@@ -70,7 +70,10 @@
     <Compile Include="Assets\RainMaker\Prefab\RainScript2D.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Charger\DetectAndMoveTowards.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\Scripts\ExitButton.cs" />
+    <Compile Include="Assets\Scripts\Generic\Properties.cs" />
+    <Compile Include="Assets\Scripts\Generic\States.cs" />
     <Compile Include="Assets\Scripts\Mage\ColliderMageRange.cs" />
     <Compile Include="Assets\Scripts\Mage\FireballTargeter.cs" />
     <Compile Include="Assets\Scripts\Mage\MageAttack.cs" />
@@ -79,9 +82,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player\SwordControls.cs" />
-    <Compile Include="Assets\Scripts\Properties.cs" />
     <Compile Include="Assets\Scripts\SceneButton.cs" />
-    <Compile Include="Assets\Scripts\States.cs" />
     <Compile Include="Assets\Scripts\Tower\TargetScript.cs" />
     <Compile Include="Assets\Scripts\Tower\TowerController.cs" />
     <Compile Include="Assets\Scripts\Tower\TowerEyeController.cs" />

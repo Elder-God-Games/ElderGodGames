@@ -7,15 +7,14 @@ public class PlayerControls : MonoBehaviour
     public GameObject weapon;
     public PlayerMovement playerMovement;
     public SpriteRenderer spriteRenderer;
-    private float relativePos;
+    // Position of the weapon relative to the Player Character
+    public float relativePos;
     
     // Methods
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        // position of the weapon relative to the player
-        relativePos = 0.2f;
     }
     void Update()
     {
@@ -38,7 +37,7 @@ public class PlayerControls : MonoBehaviour
         {
             spriteRenderer.flipX = true;
             
-            // set weapon to the right hand side of the player
+            // set weapon to the left hand side of the player
             weapon.gameObject.transform.localPosition = -this.gameObject.transform.right * relativePos;
         }
         else if (playerMovement.horizontalMove > 0) // face player right
