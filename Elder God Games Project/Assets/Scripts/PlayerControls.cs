@@ -4,87 +4,53 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    // Properties
-    public bool jumpAbility = true;
+    public GameObject weapon;
+    public PlayerMovement playerMovement;
+    public SpriteRenderer spriteRenderer;
+    // Position of the weapon relative to the Player Character
+    public float relativePos;
     
-    public float speed;
-    private float horizontalMove;
-    private Rigidbody2D body;
-
-    public float jumpForce;
-    public int noOfJumps;
-    private int jumps;
-
     // Methods
     void Start()
     {
-        this.body = this.gameObject.GetComponent<Rigidbody2D>();
-        jumps = noOfJumps;
+        playerMovement = GetComponent<PlayerMovement>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
-
-        Move();
-
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump"))
-        {
-            if (jumps > 0)
-            {
-                Jump();
-            }
-            else
-            {
-                // Else turn off their ability to jump
-                jumpAbility = false;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Fire();
-        }
-
+        // if 'Escape' on the Keyboard is pressed
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            // fade out to titlescreen
             Initiate.Fade("TitleScreen", Color.black, 1f);
         }
 
-    }
-    void Move()
-    {
-        // Get Horizontal Axis movement and return either 1 or -1
-        // multiply that by player speed to get your movement
-        horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+        // if the 'Right Mouse Button', the 'E' key or the 'Fire button' is pressed
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1"))
+        {
+            // set weapon to active
+            weapon.gameObject.SetActive(true);
+            
+        }
 
-        body.velocity = new Vector2(horizontalMove, body.velocity.y);
+        if (playerMovement.horizontalMove < 0) // face player left
+        {
+            spriteRenderer.flipX = true;
+            
+            // set weapon to the left hand side of the player
+            weapon.gameObject.transform.localPosition = -this.gameObject.transform.right * relativePos;
+        }
+        else if (playerMovement.horizontalMove > 0) // face player right
+        {
+            spriteRenderer.flipX = false;
 
-    }
-    void Jump()
-    {
-        // Adds an upwards force to the player
-        // takes away a jump from player's total jump count
-        body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        jumps--;
-
-    }
-    void Fire()
-    {
-        
+            // set weapon to the right hand side of the player
+            weapon.gameObject.transform.localPosition = this.gameObject.transform.right * relativePos;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // If the player enters the collision field of the set collider
-        if (collision.gameObject.tag == "Platform")
-        {
-
-            // Make their total number of jumps equal to the number
-            // of jumps specified in the designer
-            jumps = noOfJumps;
-
-            // Set their ability to jump to true
-            jumpAbility = true;
-
-        }
+        // If player enters contact with an enemy
+        // do damage
     }
 }

@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\ColliderMageRange.cs" />
      <Compile Include="Assets\Scripts\DetectAndMoveTowards.cs" />
+     <Compile Include="Assets\Scripts\Dialogue.cs" />
      <Compile Include="Assets\Scripts\ExitButton.cs" />
      <Compile Include="Assets\Scripts\FireballTargeter.cs" />
      <Compile Include="Assets\Scripts\LongJumpReset.cs" />
@@ -76,8 +77,10 @@
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Properties.cs" />
      <Compile Include="Assets\Scripts\SceneButton.cs" />
      <Compile Include="Assets\Scripts\States.cs" />
+     <Compile Include="Assets\Scripts\SwordControls.cs" />
      <Compile Include="Assets\Scripts\TargetScript.cs" />
      <Compile Include="Assets\Scripts\TowerController.cs" />
      <Compile Include="Assets\Scripts\TowerEyeController.cs" />
