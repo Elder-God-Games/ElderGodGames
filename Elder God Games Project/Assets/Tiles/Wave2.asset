@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 0bef129c5d24e1c499f9a8abe83cedef, type: 3}
-  m_Color: {r: 0.19624422, g: 0.6603774, b: 0.53141713, a: 1}
+  m_Color: {r: 0.016642934, g: 0.3207547, b: 0.23686182, a: 1}
   m_Transform:
     e00: 1
     e01: 0
