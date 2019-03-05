@@ -12,7 +12,7 @@ public class MageAttack : MonoBehaviour
     public Rigidbody2D Rigidbody2D;
     public GameObject PlayableCharacter;
     public GameObject Fireball;
-    public GameObject FireballPrefab;
+    //public GameObject FireballPrefab;
 
     //private Transform pTransform;
 
@@ -54,21 +54,24 @@ public class MageAttack : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         fireball = GetComponent<FireballTargeter>();
 
-
         if (Fireball == null)
         {
             Fireball = GameObject.FindWithTag("Fireball");
         }
-
-        //Instantiate(FireballPrefab, Fireball.transform.position, Fireball.transform.rotation);
     }
 
+    public Rigidbody FireballPrefab;
+    public Transform MageTransform;
     void Update()
     {
-        //Fireball.GetComponent<FireballTargeter>().enabled = true;
         directionToTarget = PlayableCharacter.transform.position - this.transform.position;
 
         dist = Vector3.Distance(transform.position, PlayableCharacter.transform.position);
+
+
+        Rigidbody FireballInstance;
+        FireballInstance = Instantiate(FireballPrefab, MageTransform.transform.position, MageTransform.transform.rotation);
+        //FireballInstance = Instantiate(FireballPrefab, Fireball.transform.position, Fireball.transform.rotation);
 
         switch (currentState)
         {
@@ -89,6 +92,7 @@ public class MageAttack : MonoBehaviour
         }
 
     }
+
     public void Attack()
     {
         enemySightLine = Physics2D.Raycast(transform.localPosition, PlayerColliderToHit.transform.position, 3);
@@ -98,7 +102,7 @@ public class MageAttack : MonoBehaviour
             Debug.DrawRay(transform.position, directionToTarget, Color.red);
         }
 
-        if(Physics.Raycast(transform.position, directionToTarget, out hit, dist))
+        if (Physics.Raycast(transform.position, directionToTarget, out hit, dist))
         {
             if (hit.transform.tag == "Platform")
             {
@@ -116,11 +120,6 @@ public class MageAttack : MonoBehaviour
             Fireball.GetComponent<FireballTargeter>().enabled = true;
             Fireball.SetActive(true);
         }
-
-        //if (!canAttack)
-        //{
-        //    currentState = states.WAIT;
-        //}
     }
 
     public void Wait()
