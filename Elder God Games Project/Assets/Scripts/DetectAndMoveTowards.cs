@@ -127,7 +127,7 @@ public class DetectAndMoveTowards : MonoBehaviour {
 
             if (CanDash)
             {
-                rigidBody.AddForce((Direction * dashMutiplyer) + new Vector3(0, .5f, 0), ForceMode2D.Impulse);
+                rigidBody.AddForce((Direction * dashMutiplyer) + new Vector3(0, .8f, 0), ForceMode2D.Impulse);
 
                 timer1 -= Time.deltaTime;
                 if (timer1 <= 0)
