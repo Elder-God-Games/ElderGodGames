@@ -67,11 +67,7 @@ public class MageAttack : MonoBehaviour
 
     void Update()
     {
-        //Fireball.GetComponent<FireballTargeter>().enabled = true;
         directionToTarget = PlayableCharacter.transform.position - this.transform.position;
-
-        //fwd = Mage.transform.TransformDirection(Vector3.left);
-        //dist = Vector3.Distance(Mage.transform.position, PlayableCharacter.transform.position);
 
         Debug.DrawRay(this.transform.position, directionToTarget, Color.red);
 
@@ -149,7 +145,7 @@ public class MageAttack : MonoBehaviour
                 Debug.Log("No Crate");
             }
         }
-
+        #region Useless
         //if (Physics.Raycast(Mage.transform.position, PlayableCharacter.transform.position, out hit, dist))
         //{
         //    if (hit.transform.tag == "Platform")
@@ -161,7 +157,7 @@ public class MageAttack : MonoBehaviour
         //        canAttack = true;
         //    }
         //}
-
+        #endregion
         if (canAttack == true)
         {
             Fireball.GetComponent<FireballTargeter>().enabled = true;
@@ -171,7 +167,7 @@ public class MageAttack : MonoBehaviour
 
         if (enemySightLine.collider != null)
         {
-            Debug.DrawRay(Mage.transform.position, PlayableCharacter.transform.position, Color.red);
+            Debug.DrawRay(this.transform.position, PlayableCharacter.transform.position, Color.red);
         }
     }
 
