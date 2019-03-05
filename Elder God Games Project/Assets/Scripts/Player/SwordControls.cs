@@ -15,11 +15,11 @@ public class SwordControls : MonoBehaviour {
         timer = 6f;
 
         this.gameObject.SetActive(false);
-
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
         // decrement timer variable by one every update
         timer--;
 

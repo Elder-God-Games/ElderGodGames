@@ -10,6 +10,7 @@ TagManager:
   - EnemyTurner
   - Weapon
   - Enemy
+  - NPC
   layers:
   - Default
   - TransparentFX

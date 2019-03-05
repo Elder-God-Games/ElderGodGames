@@ -30,7 +30,7 @@ public class PlayerControls : MonoBehaviour
         {
             // set weapon to active
             weapon.gameObject.SetActive(true);
-
+            
         }
 
         if (playerMovement.horizontalMove < 0) // face player left

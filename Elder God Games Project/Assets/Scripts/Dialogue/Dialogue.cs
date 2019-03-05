@@ -16,7 +16,8 @@ public class Dialogue: MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        Canvas.enabled = PlayerInRange;	
+        Canvas.enabled = PlayerInRange;
+        NextDialogue();
 	}
 	
 	// Update is called once per frame

@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4430527366552220}
   - component: {fileID: 212468645268939590}
+  - component: {fileID: 50567448674118464}
+  - component: {fileID: 114602689465486680}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Weapon
@@ -59,6 +61,7 @@ GameObject:
   - component: {fileID: 114940839649136214}
   - component: {fileID: 114006571124543304}
   - component: {fileID: 114830020595248834}
+  - component: {fileID: 70156823885186954}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Player
@@ -73,8 +76,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1577462711317470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0.01, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
+  m_LocalPosition: {x: 2, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 4430527366552220}
   m_Father: {fileID: 4748275279104398}
@@ -88,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 1194416056475418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4306916598738620}
   m_RootOrder: 0
@@ -101,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1659008543259786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.55, y: -1.657, z: 0.0067592054}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.16}
   m_Children:
   - {fileID: 4306916598738620}
   m_Father: {fileID: 0}
@@ -127,6 +130,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!50 &50567448674118464
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194416056475418}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
 --- !u!58 &58445946702545048
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -139,9 +162,24 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: -3}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 1
+--- !u!70 &70156823885186954
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659008543259786}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0
 --- !u!70 &70364270595665822
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -180,6 +218,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c10d0df2a7caf41b3c8718aa2d3df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114602689465486680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194416056475418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30c013993450c7142af711a7a356dab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 6
 --- !u!114 &114830020595248834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +260,7 @@ MonoBehaviour:
   weapon: {fileID: 1577462711317470}
   playerMovement: {fileID: 114830020595248834}
   spriteRenderer: {fileID: 212012125840822782}
+  relativePos: 2.5
 --- !u!212 &212012125840822782
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -245,7 +296,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dec23d3f1b157493ea928ad647f275c2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25343caa0647c694aa2da88db8bef06d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -292,7 +343,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6df2e74ccaea2ab4e907f192f5364098, type: 3}
-  m_Color: {r: 0.022694906, g: 0.9622642, b: 0.54855794, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
