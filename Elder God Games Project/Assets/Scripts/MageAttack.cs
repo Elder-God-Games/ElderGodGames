@@ -12,7 +12,7 @@ public class MageAttack : MonoBehaviour
     //public Rigidbody2D Rigidbody2D;
     public GameObject PlayableCharacter;
     public GameObject Fireball;
-    public GameObject Mage;
+    //public GameObject Mage;
     //public GameObject FireballPrefab;
 
     //public CapsuleCollider2D CapsuleCollider;
@@ -67,7 +67,11 @@ public class MageAttack : MonoBehaviour
 
     void Update()
     {
-        directionToTarget = PlayableCharacter.transform.position - this.transform.position;
+        if (PlayableCharacter != null)
+        {
+            directionToTarget = PlayableCharacter.transform.position - this.transform.position;
+        }
+        
 
         Debug.DrawRay(this.transform.position, directionToTarget, Color.red);
 
