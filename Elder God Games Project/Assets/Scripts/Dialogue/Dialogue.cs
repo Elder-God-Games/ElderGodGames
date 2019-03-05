@@ -11,7 +11,7 @@ public class Dialogue: MonoBehaviour {
     public bool PlayerInRange;
 
     private bool dialogueComplete = false;
-    private int dialogueIndex;
+    private int dialogueIndex = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -25,21 +25,21 @@ public class Dialogue: MonoBehaviour {
     {
         if (PlayerInRange && !dialogueComplete)
         {
-            if (Input.GetKey(KeyCode.E) || Input.GetButton("Jump"))
+            if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonUp("Jump") || Input.GetKeyUp(KeyCode.Return))
             {
                 NextDialogue();
             }
         }
         else
         {
-            SetCanvasVisibility(false);
+            Canvas.enabled = false;
         }
 	}
     void NextDialogue()
     {
         if (dialogueIndex < CharacterDialogue.Length)
         {
-            Text.text = CharacterDialogue[dialogueIndex];
+            Text.text = CharacterDialogue[dialogueIndex++];
         }
         else
         {
