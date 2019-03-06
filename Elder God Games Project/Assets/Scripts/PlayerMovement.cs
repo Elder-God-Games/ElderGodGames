@@ -17,11 +17,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         this.body = this.gameObject.GetComponent<Rigidbody2D>();
-
-        speed = 3;
-        noOfJumps = 2;
+        
         jumps = noOfJumps;
-        jumpForce = 3;
     }
 
     // Update is called once per frame

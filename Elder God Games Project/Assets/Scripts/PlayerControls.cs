@@ -39,13 +39,16 @@ public class PlayerControls : MonoBehaviour
             
             // set weapon to the left hand side of the player
             weapon.gameObject.transform.localPosition = -this.gameObject.transform.right * relativePos;
+            weapon.GetComponent<SpriteRenderer>().flipX = true;
+            
         }
-        else if (playerMovement.horizontalMove > 0) // face player right
+        else  // face player right
         {
             spriteRenderer.flipX = false;
 
             // set weapon to the right hand side of the player
             weapon.gameObject.transform.localPosition = this.gameObject.transform.right * relativePos;
+            weapon.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -8,6 +8,7 @@ public class CameraScript : MonoBehaviour {
     public GameObject player;
     private float halfx;
     private float halfy;
+    public float YOffsett;
 
 
     // Use this for initialization
@@ -23,7 +24,7 @@ public class CameraScript : MonoBehaviour {
     }
     void FollowPlayer(){
         
-        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, this.transform.position.z);
+        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + YOffsett, this.transform.position.z);
 
     }
 }

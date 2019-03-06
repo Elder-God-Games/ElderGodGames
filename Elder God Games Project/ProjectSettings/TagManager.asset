@@ -9,6 +9,9 @@ TagManager:
   - Dashing Enemy
   - EnemyTurner
   - Crate
+  - NPC
+  - Weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX
