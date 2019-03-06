@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Color FullHealth = Color.white;
-    private Color NoHealth = Color.black;
+    public Color FullHealth = Color.white;
+    public Color NoHealth = Color.black;
 
-    Image healthBarSprite;
+    public Image healthBarSprite;
 
     //health should be read from another script attached to the player
     public float Health = 1f;

@@ -51,7 +51,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -72,6 +72,35 @@ MonoBehaviour:
   - "Nyarlathotep: A thousand years drifting amongst the cosmos will give you such
     a creek in the  \u05D8\u034F\u0361\u0361\u0322\u05E2\u0334\u034F\u0322\u0336\u05E1\u0336\u05D8\u0321\u035F\u05D9\u0341\u0362\u035C\u0358\u05E7\u0361\u0489\u0322\u034F\u05DC\u0338\u05E2\u0489\u0361\u0358\u0361\u0322\u05E1\u0335\u0328\u035E\u0340 "
   - W-where am I?
+  - "Nyarlathotep: Welcome to the \u05D7\u0489\u0328\u0362\u05DC\u0321\u035C\u05D5\u035C\u0360\u05DD\u0340\u0361\u035E\u0321
+    \u035F\u0327\u05D5\u035F\u0489\u0362\u035F\u035E\u05D5\u0334\u0336\u05E2\u0358\u05DC\u0338\u0321\u035F\u05D8\u035E\u0335\u0337,
+    a realm caught between several others. Here, man may witness a glimpse at our
+    true greatness."
+  - "Who in the Queen\u2019s name are you?"
+  - "Nyarlathotep: Who am I? My name is \u05E9\u0360\u035E\u031B\u05D0\u0337\u0361\u0321\u035C\u05B8\u0327\u0322\u0335\u0321\u05D8\u0361\u0358\u0340\u05DF\u0340\u0362\u0341\u0362\u0336
+    \u0337\u0321\u0489\u0321\u05DE\u0336\u035C\u0327\u05E2\u0341\u0489\u035F\u0341\u05E0\u035C\u0334\u0358\u035F\u0322\u05D8\u034F\u035F\u035F\u05E9\u0327\u0327\u035E\u0315
+    but you may call me Nyarlathotep. Still too hard to pronounce? Pity."
+  - "Well aren\u2019t you just sunshine and- wait, what even are you?"
+  - "Nyarlathotep: I\u2019m sure you have many questions but I assure you I have neither
+    the time nor the ability to care, and neither will you unless you hear out MY
+    request.  "
+  - "Nyarlathotep: I need something of you, a favour, one that you and only you can
+    deliver. You\u2019ve somehow maintained your sanity despite the situation you
+    now find yourself. I have need of your ability to keep your wits despite the dire
+    situation you now find yourself. "
+  - . . . No.
+  - "Nyarlathotep: I\u2019m sorry you seem to be under the impression that you have
+    a choice here. Allow me to rephrase. You are the only one capable of maintaining
+    your sense of self in this realm, I am not about to allow such a valuable asset
+    to slip through my grasp. "
+  - 'Nyarlathotep: Now listen here. I am in search of an item, one of immense power
+    comparable to my kin. This Relic is currently lost somewhere in this realm, and
+    I need you to help me find it. '
+  - So let me get this straight. The magic man talking all high and mighty needs me
+    to fetch some rare item for him? Are you a Bishop?
+  - "Nyarlathotep: Don\u2019t misunderstand, human. I have my own reasons for not
+    going out of my way to obtain it myself. Just do as you are told and I will reward
+    you handsomely. "
   Text: {fileID: 0}
   Canvas: {fileID: 0}
   PlayerInRange: 0

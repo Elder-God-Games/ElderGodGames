@@ -14,6 +14,7 @@ public class TargetScript : MonoBehaviour
 
     [Range(1, 5)]
     public float speed;
+    public float TimerOne = 5;
     [Range(0,5)]
     public float followingSpeed;
     [Range(0, 10)]
@@ -61,7 +62,7 @@ public class TargetScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        TimerOne -= Time.deltaTime;
         fwd = TowerEye.transform.TransformDirection(Vector3.forward); //raycast directing in eye direction
         dist = Vector3.Distance(TowerEye.transform.position, Player.transform.position); //distance from eye to player
 
@@ -156,9 +157,10 @@ public class TargetScript : MonoBehaviour
                 {
                     EnemyTrigger = false;
                 }
-                else if(EnemyTrigger == true)
+                else if(EnemyTrigger == true && TimerOne <= 0)
                 {
                     Spawn();
+                    TimerOne = 3;
                 }
             }
     }

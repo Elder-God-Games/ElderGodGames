@@ -52,11 +52,12 @@ public class DetectAndMoveTowards : MonoBehaviour {
     void Start()
     {
         currentState = states.IDLE;
+        playerCurcleColider = GameObject.FindGameObjectWithTag("Player").GetComponent<CircleCollider2D>();
         boxColider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<CircleCollider2D>();
-        EnemyTurner = GameObject.FindGameObjectWithTag("EnemyTurner");
+        //EnemyTurner = GameObject.FindGameObjectWithTag("EnemyTurner");
         questionMark.SetActive(false);
         exclimationMark.SetActive(false);
     }
@@ -249,11 +250,11 @@ public class DetectAndMoveTowards : MonoBehaviour {
         // enemyTurner is a single instance of an object present in the scene. the isuse is that it is only detecting one
         // object and not the two of them. need to create a list to contain all the enemyTurners in the scene
         // then foreach over them to detect tho collisions.
-        if (collider.IsTouching(EnemyTurner.GetComponent<BoxCollider2D>()) && Turned == false)
-        {
-            FlipSprite();
-            Turned = true;
-        }
+        //if (collider.IsTouching(EnemyTurner.GetComponent<BoxCollider2D>()) && Turned == false)
+        //{
+        //    FlipSprite();
+        //    Turned = true;
+        //}
     }
 
     public void NextWalk()

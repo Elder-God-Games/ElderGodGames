@@ -40,5 +40,16 @@ public class SwordControls : MonoBehaviour {
             // destroy the enemy
             Destroy(collision.gameObject);
         }
+        
+
+        //#endif
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Fireball")
+        {
+            FireballTargeter targeter = other.gameObject.GetComponent<FireballTargeter>();
+            targeter.resetFireball();
+        }
     }
 }

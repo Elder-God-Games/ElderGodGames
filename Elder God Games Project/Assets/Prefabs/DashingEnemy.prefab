@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 61582015663975674}
   m_Layer: 0
   m_Name: DashingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 1970192307667980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.3340898, y: -1.498, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4267200695155786}
   - {fileID: 4349055207173722}
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCurcleColider: {fileID: 0}
+  collider: {fileID: 0}
   boxColider: {fileID: 61582015663975674}
   questionMark: {fileID: 1747064603597148}
   exclimationMark: {fileID: 1043444735643698}
@@ -221,8 +222,10 @@ MonoBehaviour:
   AttackDistance: 0
   CanDash: 0
   CanWalk: 1
+  Turned: 0
   timer1: 0
   timer2: 2
+  timer3: 2
   speed: 1
   dashMutiplyer: 0.9
   dashed: 0

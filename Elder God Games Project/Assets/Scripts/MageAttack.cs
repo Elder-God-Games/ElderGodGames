@@ -17,7 +17,7 @@ public class MageAttack : MonoBehaviour
 
     //public CapsuleCollider2D CapsuleCollider;
     public BoxCollider2D boxCollider;
-    public BoxCollider box;
+    //public BoxCollider box;
 
     bool canAttack = true;
 
@@ -139,6 +139,11 @@ public class MageAttack : MonoBehaviour
         if (Physics.Raycast(this.transform.position, directionToTarget, out hit))
         {
             if (hit.transform.tag == "Crate")
+            {
+                canAttack = false;
+                Debug.Log("Crate");
+            }
+            if (hit.transform.tag == "Platform")
             {
                 canAttack = false;
                 Debug.Log("Crate");

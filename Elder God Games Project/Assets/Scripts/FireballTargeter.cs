@@ -55,9 +55,9 @@ public class FireballTargeter : MonoBehaviour
         }
     }
 
-    void resetFireball() //Resets the fireball
+    public void resetFireball() //Resets the fireball
     {
-        lifeSpan = 4f;
+        lifeSpan = 6f;
         transform.position = defaultPosition;
     } 
 
