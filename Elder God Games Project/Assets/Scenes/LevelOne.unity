@@ -35473,7 +35473,12 @@ Prefab:
     - target: {fileID: 50448266409102884, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
         type: 2}
       propertyPath: m_GravityScale
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114921689012189344, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: jumpForce
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
