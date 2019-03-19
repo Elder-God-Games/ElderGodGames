@@ -17,6 +17,8 @@ public class CameraScript : MonoBehaviour {
     }
 
     // Update is called once per frame
+    // simple script that sets the camera to follow the players position at
+    // all tims with an offset that can be unut from the unity inspector.
     void Update() {
         
             FollowPlayer();
