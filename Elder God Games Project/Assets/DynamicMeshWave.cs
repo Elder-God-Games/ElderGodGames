@@ -62,6 +62,9 @@ public class DynamicMeshWave : MonoBehaviour {
         // user input to add multiples of 4 new verts.
         int noOfVerteciesToAdd = 2;
 
+        // this can be used to get the texture devided by the number of verts to add.
+        // sprite.texture.width / noOfVerteciesToAdd;
+
         // getting all the vertecies into a list for adding to create a new array of vertecies for the changes.
         List<Vector2> vertexList = new List<Vector2>();
         foreach (var item in spriteVertices)
