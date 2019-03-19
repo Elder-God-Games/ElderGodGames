@@ -16977,7 +16977,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502480833}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56a14a74c2fbeae4680c5ec2f9ffd0e7, type: 3}
   m_Name: 
@@ -17560,6 +17560,36 @@ Prefab:
     - target: {fileID: 1332164406944838, guid: ef6e26c2423862146a39c52a850c57ac, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589681749301748, guid: ef6e26c2423862146a39c52a850c57ac,
+        type: 2}
+      propertyPath: FullHealth.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589681749301748, guid: ef6e26c2423862146a39c52a850c57ac,
+        type: 2}
+      propertyPath: FullHealth.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589681749301748, guid: ef6e26c2423862146a39c52a850c57ac,
+        type: 2}
+      propertyPath: FullHealth.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589681749301748, guid: ef6e26c2423862146a39c52a850c57ac,
+        type: 2}
+      propertyPath: NoHealth.r
+      value: 0.13725491
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589681749301748, guid: ef6e26c2423862146a39c52a850c57ac,
+        type: 2}
+      propertyPath: NoHealth.g
+      value: 0.13725491
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589681749301748, guid: ef6e26c2423862146a39c52a850c57ac,
+        type: 2}
+      propertyPath: NoHealth.b
+      value: 0.13725491
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef6e26c2423862146a39c52a850c57ac, type: 2}
@@ -27543,7 +27573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &965980999
 MonoBehaviour:
   m_ObjectHideFlags: 0
