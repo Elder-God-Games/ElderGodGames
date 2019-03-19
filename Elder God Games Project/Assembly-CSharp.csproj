@@ -76,6 +76,7 @@
     <Compile Include="Assets\RainMaker\Prefab\RainScript.cs" />
     <Compile Include="Assets\RainMaker\Prefab\RainScript2D.cs" />
     <Compile Include="Assets\ResumeButton.cs" />
+    <Compile Include="Assets\Scripts\Archer.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\ColliderMageRange.cs" />
     <Compile Include="Assets\Scripts\DetectAndMoveTowards.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ProjectileMath.cs" />
     <Compile Include="Assets\Scripts\Properties.cs" />
     <Compile Include="Assets\Scripts\SceneButton.cs" />
     <Compile Include="Assets\Scripts\States.cs" />

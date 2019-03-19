@@ -1242,7 +1242,7 @@ Transform:
   m_LocalScale: {x: 1.0115, y: 1.0115, z: 1.0115}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &137050906
 GameObject:
@@ -1722,6 +1722,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 82946875982840012, guid: 466bdbbc15f02334f8fdf4b3152e8127,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243355303842934320, guid: 2a17f042a997d4f4694cecaa5921a214,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 466bdbbc15f02334f8fdf4b3152e8127, type: 2}
   m_IsPrefabAsset: 0
@@ -1834,7 +1840,7 @@ Transform:
   m_LocalScale: {x: 1.0115, y: 1.0115, z: 1.0115}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &226420966
 MonoBehaviour:
@@ -30165,7 +30171,8 @@ MonoBehaviour:
   minDistance: 1
   followDistance: 1
   target: {fileID: 2095371080}
-  offset: {x: 0.1, y: 1.1, z: 0}
+  dialoguePanel: {fileID: 1459232342}
+  offset: {x: 0.5, y: 0.6, z: 0}
 --- !u!1001 &1266286492
 Prefab:
   m_ObjectHideFlags: 0

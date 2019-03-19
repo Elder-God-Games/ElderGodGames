@@ -15,19 +15,6 @@ public class CameraScript : MonoBehaviour {
     void Start()
     {
         targetPos = transform.position;
-        yPos = 1.1f;
-    }
-
-    void Update()
-    {
-        if(dialoguePanel.activeSelf == false)
-        {
-            offset = new Vector3(offset.x, yPos, offset.z);
-        }
-        else if(dialoguePanel.activeSelf == true)
-        {
-            offset = new Vector3(offset.x, 0.5f, offset.z);
-        }
     }
 
     // Update is called once per frame

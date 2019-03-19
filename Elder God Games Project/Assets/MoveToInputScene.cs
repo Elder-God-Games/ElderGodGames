@@ -12,13 +12,19 @@ public class MoveToInputScene : MonoBehaviour {
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (this.GetComponent<BoxCollider2D>().IsTouching(collider))
-        {
-            SceneManager.LoadScene(ChangeTo);
-        }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Player")
+            Initiate.Fade(ChangeTo, Color.black, 2f);
+    }
+
+    // Update is called once per frame
+    void Update () {
+        //if (this.GetComponent<BoxCollider2D>().IsTouching(collider))
+        //{
+        //    SceneManager.LoadScene(ChangeTo);
+        //}
         
 	}
 
