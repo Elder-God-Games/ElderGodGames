@@ -18,13 +18,6 @@ public class PlayerControls : MonoBehaviour
     }
     void Update()
     {
-        // if 'Escape' on the Keyboard is pressed
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            // fade out to titlescreen
-            Initiate.Fade("TitleScreen", Color.black, 1f);
-        }
-
         // if the 'Right Mouse Button', the 'E' key or the 'Fire button' is pressed
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1"))
         {
