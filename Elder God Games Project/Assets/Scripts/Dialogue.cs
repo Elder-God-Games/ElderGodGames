@@ -25,9 +25,13 @@ public class Dialogue: MonoBehaviour {
     {
         if (PlayerInRange && !dialogueComplete)
         {
-            if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonUp("Jump") || Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 NextDialogue();
+            }
+            else if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonUp("Jump"))
+            {
+                SkipDialogue();
             }
         }
         else
@@ -45,6 +49,10 @@ public class Dialogue: MonoBehaviour {
         {
             dialogueComplete = true;
         }
+    }
+    void SkipDialogue()
+    {
+        dialogueComplete = true;
     }
     void SetCanvasVisibility(bool visibility)
     {
