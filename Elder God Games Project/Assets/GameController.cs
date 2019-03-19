@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     public GameObject pauseScreen;
-    public AudioSource rain;
     private AudioSource source;
     public AudioClip click;
 
@@ -18,6 +17,11 @@ public class GameController : MonoBehaviour {
 	void Update ()
     {
         TogglePauseScreen();
+
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            Initiate.Fade("TitleScreen", Color.black, 2f);
+        }
 	}
 
     void TogglePauseScreen()
@@ -27,17 +31,22 @@ public class GameController : MonoBehaviour {
             if(pauseScreen.activeSelf == false)
             {
                 pauseScreen.SetActive(true);
-                rain.Stop();
                 source.PlayOneShot(click, 0.6f);
                 Time.timeScale = 0f;
             }
             else
             {
                 pauseScreen.SetActive(false);
-                rain.Play();
                 source.PlayOneShot(click, 0.6f);
                 Time.timeScale = 1f;
             }
         }
     }
+
+    //public void ResumeButton()
+    //{
+    //    pauseScreen.SetActive(false);
+    //    source.PlayOneShot(click, 0.6f);
+    //    Time.timeScale = 1f;
+    //}
 }
