@@ -4,29 +4,48 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
-    //Properties
-    public GameObject player;
-    private float halfx;
-    private float halfy;
-    public float YOffsett;
-
-
+    public float interpVelocity;
+    public float minDistance;
+    public float followDistance;
+    public GameObject target, dialoguePanel;
+    public Vector3 offset;
+    Vector3 targetPos;
+    private float yPos;
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
+        targetPos = transform.position;
+        yPos = 1.1f;
+    }
 
+    void Update()
+    {
+        if(dialoguePanel.activeSelf == false)
+        {
+            offset = new Vector3(offset.x, yPos, offset.z);
+        }
+        else if(dialoguePanel.activeSelf == true)
+        {
+            offset = new Vector3(offset.x, 0.5f, offset.z);
+        }
     }
 
     // Update is called once per frame
-    // simple script that sets the camera to follow the players position at
-    // all tims with an offset that can be unut from the unity inspector.
-    void Update() {
-        
-            FollowPlayer();
+    void FixedUpdate()
+    {
+        if (target)
+        {
+            Vector3 posNoZ = transform.position;
+            posNoZ.z = target.transform.position.z;
 
-    }
-    void FollowPlayer(){
-        
-        this.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + YOffsett, this.transform.position.z);
+            Vector3 targetDirection = (target.transform.position - posNoZ);
 
+            interpVelocity = targetDirection.magnitude * 15f;
+
+            targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime);
+
+            transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
+
+        }
     }
 }
