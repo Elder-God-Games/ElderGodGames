@@ -21,4 +21,10 @@ public class MoveToInputScene : MonoBehaviour {
         }
         
 	}
+
+    public void ChangeToProvidedScene()
+    {
+        Initiate.Fade("LevelOne",Color.black,.2f);
+    }
+
 }
