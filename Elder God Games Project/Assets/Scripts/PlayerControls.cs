@@ -42,7 +42,7 @@ public class PlayerControls : MonoBehaviour
             weapon.GetComponent<SpriteRenderer>().flipX = true;
             
         }
-        else  // face player right
+        else if (playerMovement.horizontalMove > 0)  // face player right
         {
             spriteRenderer.flipX = false;
 
