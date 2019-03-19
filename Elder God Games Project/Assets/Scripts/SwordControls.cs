@@ -34,20 +34,19 @@ public class SwordControls : MonoBehaviour {
 	}
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // if the collision is with an object timed enemy
+        // if the collision is with an object tagged "Enemy"
         if (collision.gameObject.tag == "Enemy")
         {
             // destroy the enemy
             Destroy(collision.gameObject);
         }
-        
-
-        //#endif
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // if the collision is with an object tagged "Fireball"
         if (other.gameObject.tag == "Fireball")
         {
+            // reset the position of the Fireball
             FireballTargeter targeter = other.gameObject.GetComponent<FireballTargeter>();
             targeter.resetFireball();
         }
