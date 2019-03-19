@@ -49,6 +49,7 @@ public class DetectAndMoveTowards : MonoBehaviour {
     public float dashDelayTime;
 
     // Use this for initialization
+    // all initializations for the cript to function
     void Start()
     {
         currentState = states.IDLE;
@@ -68,7 +69,8 @@ public class DetectAndMoveTowards : MonoBehaviour {
         // switch on the state machine
         switch (currentState)
         {
-            
+            // the state of idle for the enemy, stops the enemy from moving and statrts walking
+            // used for going between states and to reset timers.
             case states.IDLE:
                 #region
                 //add proper idle timer.
@@ -79,6 +81,9 @@ public class DetectAndMoveTowards : MonoBehaviour {
                 
                 #endregion
                 break;
+                // the walk state sets the player moving for a randomized amount of time
+                // in the direction the sprite faces but alows the sprite to flip and change direction.
+                // timers are used for the randomization as well as modulus quaries.
             case states.WALK:
 
                 if (!CanWalk)
@@ -102,12 +107,17 @@ public class DetectAndMoveTowards : MonoBehaviour {
                 }
 
                 break;
+                // calls the walk towards player method that only chases the players x position.
             case states.WALKTOPLAYER:
                 WalkTowardsPlayer();
                 break;
+                // attack state created in the early stages.
+                // basis for the players attack method.
             case states.ATTACK:
                 Attack();
                 break;
+                // changes to the dash state and call the dash method. this will make the enemy
+                // dash in the direction it is facing and is only called when it can see the player.
             case states.DASH:
                 Dash();
                 break;
@@ -117,6 +127,11 @@ public class DetectAndMoveTowards : MonoBehaviour {
 
         
     }
+    // the dash method creates an exclimationmark to show what is happening,
+    // this mark grows and shrinks over 3 seconds and then deactivates itself
+    // then the dash happens applying force in the direction it is facing and
+    // a small amount of fource on the y axis to give the enemy some lift
+    // to avoide the friction of its colider agenst the ground colider
     public void Dash()
     {
         // cause an ! to be created as a timer before dash.
@@ -151,6 +166,8 @@ public class DetectAndMoveTowards : MonoBehaviour {
         // cause a bounce to happen if colided with player.
 
     }
+    // early stage attack script that was used for testing how to creat box colliders at will
+    // as to cause dame to the player, similer method was created later for the players weapon.
     public void Attack()
     {
         // creates a new box colider that is a trigger
@@ -169,6 +186,9 @@ public class DetectAndMoveTowards : MonoBehaviour {
         // turn off the attack colider or a memory leak exists.
         attackAbility = !attackAbility;
     }
+    // this method just sets the enemy to move towars the players x axis.
+    // while the player is in range the method chooses to make the dicision
+    // to either dash or not to based on a modulus quary.
     public void WalkTowardsPlayer()
     {
         if (boxColider.IsTouching(playerCurcleColider))
@@ -200,21 +220,23 @@ public class DetectAndMoveTowards : MonoBehaviour {
             lostPlayer = true;
         }
     }
-
+    // this method make use of the invoke method from unity that allows a method to be called
+    // after a time delay. this calls the flip sprite method.
     void LookAround()
     {
         StopMoving();
         questionMark.SetActive(true);
 
-        Invoke("FlipSprite", .2f);
-        Invoke("FlipSprite", .8f);
-        Invoke("FlipSprite", 1.8f);
-        Invoke("FlipSprite", 2.8f);
+        Invoke("FlipSprite", .5f);
+        Invoke("FlipSprite", 1f);
+        Invoke("FlipSprite", 1.5f);
+        Invoke("FlipSprite", 2f);
 
         currentState = states.IDLE;
     }
 
-
+    // walk simply adds velocity to enemy in the direction it is faceing for a period of time
+    // then it decids weather too keep walking or to change direction.
     public void Walk()
     {
         if (timer1 <= 0)
