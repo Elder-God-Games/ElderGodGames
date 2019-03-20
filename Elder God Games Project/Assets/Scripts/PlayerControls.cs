@@ -11,12 +11,15 @@ public class PlayerControls : MonoBehaviour
     // Position of the weapon relative to the Player Character
     public float relativePos;
     public float playerHealth = 1;
+    AudioSource source;
+    public AudioClip hit;
     
     // Methods
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        source = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -57,6 +60,10 @@ public class PlayerControls : MonoBehaviour
         {
             Debug.Log("Touching Enemy");
             playerHealth -= 0.1f;
+            if (!source.isPlaying)
+            {
+                source.PlayOneShot(hit);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,6 +71,10 @@ public class PlayerControls : MonoBehaviour
         if (collision.gameObject.tag == "Fireball")
         {
             playerHealth -= 0.1f;
+            if(!source.isPlaying)
+            {
+                source.PlayOneShot(hit, 0.3f);
+            }
         }
     }
 }
