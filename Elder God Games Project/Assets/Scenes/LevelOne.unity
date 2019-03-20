@@ -37672,31 +37672,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 286e985854edc9c47a298240f5c6b72c, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1725943669 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1029797883504992, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
-    type: 2}
-  m_PrefabInternal: {fileID: 2088998976}
---- !u!50 &1725943674
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1725943669}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1736154829
 GameObject:
   m_ObjectHideFlags: 0
@@ -47628,7 +47603,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -47664,6 +47639,52 @@ Prefab:
       propertyPath: jumpForce
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 212012125840822782, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212012125840822782, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748275279104398, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 58445946702545048, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 70146198150696886, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471665372507312, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471665372507312, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 58762866316068424, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114940839649136214, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
+        type: 2}
+      propertyPath: relativePos
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f2abffae172bd9479a0c3d3d223ec0c, type: 2}
   m_IsPrefabAsset: 0
@@ -47672,6 +47693,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1659008543259786, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
     type: 2}
   m_PrefabInternal: {fileID: 2088998976}
+--- !u!95 &2095371081
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2095371080}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ad15a431584aa54a8b2d26f50300af8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!58 &2095371084 stripped
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 58445946702545048, guid: 0f2abffae172bd9479a0c3d3d223ec0c,
