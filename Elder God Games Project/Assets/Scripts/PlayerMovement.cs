@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
-
+        
         // jump on Xbox controller currently mapped to 'A' 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Jump"))
         {
@@ -52,7 +52,14 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
         body.velocity = new Vector2(horizontalMove, body.velocity.y);
-
+        if (horizontalMove > 0)
+        {
+            gameObject.GetComponent<Animator>().SetBool("Walking", true);
+        }
+        else
+        {
+            gameObject.GetComponent<Animator>().SetBool("Walking", false);
+        }
     }
     void Jump()
     {
