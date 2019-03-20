@@ -19,6 +19,8 @@ public class TargetScript : MonoBehaviour
     public float followingSpeed;
     [Range(0, 10)]
     public float enemySpawn;
+    AudioSource source;
+    public AudioClip siren;
 
     public GameObject TowerEye, Player, Enemy;
 
@@ -43,6 +45,8 @@ public class TargetScript : MonoBehaviour
         towerEyeYpos = transform.position.y;
 
         EnemyTrigger = false;
+
+        source = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -51,6 +55,10 @@ public class TargetScript : MonoBehaviour
         {
             EnemyTrigger = true;
             EyeState = State.Attack;
+            if(!source.isPlaying)
+            {
+                source.PlayOneShot(siren, 4f);
+            }
         } 
     }
 
