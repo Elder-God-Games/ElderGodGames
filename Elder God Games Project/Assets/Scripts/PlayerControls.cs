@@ -7,8 +7,10 @@ public class PlayerControls : MonoBehaviour
     public GameObject weapon;
     public PlayerMovement playerMovement;
     public SpriteRenderer spriteRenderer;
+    public HealthBar health;
     // Position of the weapon relative to the Player Character
     public float relativePos;
+    public float playerHealth = 1;
     
     // Methods
     void Start()
@@ -43,10 +45,25 @@ public class PlayerControls : MonoBehaviour
             weapon.gameObject.transform.localPosition = this.gameObject.transform.right * relativePos;
             weapon.GetComponent<SpriteRenderer>().flipX = false;
         }
+        health.Health = playerHealth;
+        if(playerHealth <= 0)
+        {
+            Initiate.Fade("FailScreen", Color.black, 2f);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // If player enters contact with an enemy
-        // do damage
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Touching Enemy");
+            playerHealth -= 0.1f;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Fireball")
+        {
+            playerHealth -= 0.1f;
+        }
     }
 }
