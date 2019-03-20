@@ -57,7 +57,7 @@ public class TargetScript : MonoBehaviour
             EyeState = State.Attack;
             if(!source.isPlaying)
             {
-                source.PlayOneShot(siren, 4f);
+                source.PlayOneShot(siren, 2f);
             }
         } 
     }
