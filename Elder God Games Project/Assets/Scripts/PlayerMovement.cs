@@ -52,7 +52,12 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
         body.velocity = new Vector2(horizontalMove, body.velocity.y);
-        if (horizontalMove > 0)
+
+        // this is for changing the variable inside the animator.
+        // if the player is moving it wil change a bool called Walking to true
+        // else it will change the bool back to false and stop the waking animation
+        // and send the player back to its idle animation. - Millsy
+        if (horizontalMove > 0 || horizontalMove < 0)
         {
             gameObject.GetComponent<Animator>().SetBool("Walking", true);
         }
