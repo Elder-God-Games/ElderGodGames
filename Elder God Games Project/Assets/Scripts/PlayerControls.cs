@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour
     public float playerHealth = 1;
     AudioSource source;
     public AudioClip hit;
+
+    bool isAttacking = false;
     
     // Methods
     void Start()
@@ -28,7 +30,6 @@ public class PlayerControls : MonoBehaviour
         {
             // set weapon to active
             weapon.gameObject.SetActive(true);
-            
         }
 
         if (playerMovement.horizontalMove < 0) // face player left
@@ -58,11 +59,14 @@ public class PlayerControls : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Touching Enemy");
-            playerHealth -= 0.1f;
-            if (!source.isPlaying)
+            if(weapon.activeSelf == false)
             {
-                source.PlayOneShot(hit);
+                Debug.Log("Touching Enemy");
+                playerHealth -= 0.1f;
+                if (!source.isPlaying)
+                {
+                    source.PlayOneShot(hit);
+                }
             }
         }
     }
@@ -70,10 +74,13 @@ public class PlayerControls : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fireball")
         {
-            playerHealth -= 0.1f;
-            if(!source.isPlaying)
+            if(weapon.activeSelf == false)
             {
-                source.PlayOneShot(hit, 0.3f);
+                playerHealth -= 0.1f;
+                if(!source.isPlaying)
+                {
+                    source.PlayOneShot(hit, 0.3f);
+                }
             }
         }
     }
